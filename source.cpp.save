@@ -6,10 +6,11 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!");
-    const int maxLenght = ceil(sqrt(pow(window.getSize().x, 2) + pow(window.getSize().y, 2)));
 
-    CollisionHandler col()
-    //Lightray test(0.785398163, sf::Vector2f(0, 0), maxLenght);
+    CollisionHandler col(window);
+
+    Lightray* li = col.createRay(0.785398163, sf::Vector2f(0, 0));
+    Wall* wall = col.createWall(sf::Vector2f(300, 20), sf::Vector2f(0, 100));
 
     while (window.isOpen())
     {
@@ -20,8 +21,9 @@ int main()
                 window.close();
         }
         window.clear();
-        window.draw(test.getDrawable());
+        col.draw();
         window.display();
+
     }
 
     return 0;

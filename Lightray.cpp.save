@@ -20,7 +20,6 @@ Lightray::Lightray(double _angle, sf::Vector2f starting_position, const int maxL
 {
     setStartingPosition(starting_position);
     angle = _angle;
-    calculateVertices();
 }
 
 Lightray::~Lightray()
@@ -43,5 +42,4 @@ void Lightray::calculateVertices(){
     newPosition.position.y += defaultLenght * sin (angle);
     vertices.append(newPosition);
     std::cout << newPosition.position;
-    cout << defaultLenght << endl;
 }

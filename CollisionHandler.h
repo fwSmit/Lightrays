@@ -3,22 +3,22 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Lightray.h"
+#include "Wall.h"
 
 using namespace std;
 
 class CollisionHandler
 {
     const float maxLenght;
-    vector<Lightray> rays_changed;
-    vector<Lightray> rays_unchanged;
-    const sf::Window& window;
-    //vector<Lightray> mirrors_changed;
-    //vector<Lightray> mirrors_unchanged;
+    vector<Lightray> rays;
+    sf::RenderWindow& window;
+    vector<Wall> walls;
 
     public:
-        CollisionHandler(const sf::Window& _window);
+        CollisionHandler(sf::RenderWindow& _window);
         virtual ~CollisionHandler();
-        Lightray* createRay(double angle, sf::Vector2f starting_position);//
+        Lightray* createRay(double angle, sf::Vector2f starting_position);
+        Wall* createWall(sf::Vector2f _first, sf::Vector2f _second);
         void draw();
     protected:
 

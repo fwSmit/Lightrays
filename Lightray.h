@@ -12,8 +12,8 @@ class Lightray
     const int defaultLenght;
     double angle;
     sf::VertexArray vertices;
-    void calculateVertices();
 public:
+    void calculateVertices();
     void setAngle(double angle);
     void setStartingPosition(sf::Vector2f position);
     Lightray(double angle, sf::Vector2f starting_position, const int maxLenght);

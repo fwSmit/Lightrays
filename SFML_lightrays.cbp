@@ -43,8 +43,12 @@
 		<Linker>
 			<Add directory="G:/Friso/SFML gcc/SFML-2.4.2/lib" />
 		</Linker>
+		<Unit filename="CollisionHandler.cpp" />
+		<Unit filename="CollisionHandler.h" />
 		<Unit filename="Lightray.cpp" />
 		<Unit filename="Lightray.h" />
+		<Unit filename="Wall.cpp" />
+		<Unit filename="Wall.h" />
 		<Unit filename="bin/Debug/openal32.dll">
 			<Option target="Debug" />
 		</Unit>

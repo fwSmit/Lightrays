@@ -9,8 +9,8 @@ int main()
 
     CollisionHandler col(window);
 
-    col.createRay(0.785398163, sf::Vector2f(0, 0));
-    //Lightray test(0.785398163, sf::Vector2f(0, 0), maxLenght);
+    Lightray* li = col.createRay(0.785398163, sf::Vector2f(0, 0));
+    Wall* wall = col.createWall(sf::Vector2f(300, 20), sf::Vector2f(0, 100));
 
     while (window.isOpen())
     {
@@ -21,7 +21,9 @@ int main()
                 window.close();
         }
         window.clear();
+        col.draw();
         window.display();
+
     }
 
     return 0;
