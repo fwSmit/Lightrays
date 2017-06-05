@@ -35,12 +35,8 @@ void CollisionHandler::draw()
     }
 	
 	for(int i = 0; i < rays.size(); i++){
-		rays[i].calculateVertices();
+		rays[i].calculateVertices(walls);
         window.draw(rays[i].getDrawable());
 	}
-    /*for(auto& i : rays){
-        i.calculateVertices();
-        window.draw(i.getDrawable());
-    }*/
     window.draw(lines_array);
 }
