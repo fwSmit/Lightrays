@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "CollisionHandler.h"
+//#include "Lightray.h"
+#include <SFML/Config.hpp>
 
 
 
@@ -9,6 +11,8 @@ int main()
 
     CollisionHandler col(window);
 
+	//Lightray li(0.785398163, sf::Vector2f(0, 0), 1000);
+	//li.calculateVertices();
     Lightray* li = col.createRay(0.785398163, sf::Vector2f(0, 0));
     Wall* wall = col.createWall(sf::Vector2f(300, 20), sf::Vector2f(0, 100));
 
@@ -21,7 +25,8 @@ int main()
                 window.close();
         }
         window.clear();
-        col.draw();
+		//window.draw(li.getDrawable());
+		col.draw();
         window.display();
 
     }

@@ -1,5 +1,6 @@
 #include "Lightray.h"
 #include <iostream>
+#include <cmath>
 
 /*!
 * Copies bytes from a source memory area to a destination memory area,
@@ -16,7 +17,7 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 
 
 
-Lightray::Lightray(double _angle, sf::Vector2f starting_position, const int maxLenght) : vertices(sf::LineStrip), defaultLenght(maxLenght)
+Lightray::Lightray(double _angle, sf::Vector2f starting_position, const int maxLenght) : vertices(sf::LinesStrip), defaultLenght(maxLenght)
 {
     setStartingPosition(starting_position);
     angle = _angle;

@@ -1,4 +1,5 @@
 #include "CollisionHandler.h"
+#include <cmath>
 
 CollisionHandler::CollisionHandler(sf::RenderWindow& _window) :  maxLenght (sqrt(pow(_window.getSize().x, 2) + pow(_window.getSize().y, 2))), window(_window)
 {
@@ -12,8 +13,10 @@ CollisionHandler::~CollisionHandler()
 
 Lightray* CollisionHandler::createRay(double angle, sf::Vector2f starting_position)
 {
-    rays.push_back(Lightray(angle, starting_position, maxLenght));
-    return &rays[rays.size()-1];
+	Lightray ray(angle, starting_position, maxLenght);
+	
+    rays.push_back(ray);
+    //return &rays[rays.size()-1];
 }
 
 Wall* CollisionHandler::createWall(sf::Vector2f _first, sf::Vector2f _second)
@@ -26,13 +29,18 @@ Wall* CollisionHandler::createWall(sf::Vector2f _first, sf::Vector2f _second)
 void CollisionHandler::draw()
 {
     sf::VertexArray lines_array(sf::Lines);
-    for(auto i : walls){
-        lines_array.append(i.getFirst());
-        lines_array.append(i.getSecond());
+    for(int i = 0; i < walls.size(); i++){
+        lines_array.append(walls[i].getFirst());
+        lines_array.append(walls[i].getSecond());
     }
-    for(auto& i : rays){
+	
+	for(int i = 0; i < rays.size(); i++){
+		rays[i].calculateVertices();
+        window.draw(rays[i].getDrawable());
+	}
+    /*for(auto& i : rays){
         i.calculateVertices();
         window.draw(i.getDrawable());
-    }
+    }*/
     window.draw(lines_array);
 }

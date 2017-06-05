@@ -9,7 +9,7 @@ using namespace std;
 
 class Lightray
 {
-    const int defaultLenght;
+    int defaultLenght;
     double angle;
     sf::VertexArray vertices;
 public:
