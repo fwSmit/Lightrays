@@ -1,13 +1,18 @@
 #include <SFML/Graphics.hpp>
-#include "CollisionHandler.h"
-//#include "Lightray.h"
+//#include "CollisionHandler.h"
+#include "Lightray.h"
 #include <SFML/Config.hpp>
 #include <math.h>
 
 #define USE_SFML_WINDOW
 
 float degreeToRadian(float degree){
-	return (degree-90) * (M_PI/180);
+	return (degree) * (M_PI/180);
+}
+
+sf::Vector2f getIntersect(Lightray first, Lightray second){
+	double angle_first = first.angle;
+	double angle_second = second.angle;
 }
 
 int main()
@@ -15,15 +20,17 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!"); 
 	
 
-    CollisionHandler col(window);
+    //CollisionHandler col(window);
 
-	//Lightray li(0.785398163, sf::Vector2f(0, 0), 1000);
+	Lightray li(0.785398163, sf::Vector2f(0, 0), 1000);
+	Lightray li2(degreeToRadian(10), sf::Vector2f(0, 200), 1000);
 	//li.calculateVertices();
-    Lightray* li = col.createRay(degreeToRadian(100), sf::Vector2f(0, 0));
-    Wall* wall = col.createWall(sf::Vector2f(30, 230), sf::Vector2f(230, 100));
+    //Lightray* li = col.createRay(degreeToRadian(100), sf::Vector2f(0, 0));
+    //Wall* wall = col.createWall(sf::Vector2f(30, 230), sf::Vector2f(230, 100));
 
-	col.draw();
-    
+	//col.draw();
+	li.calculateVertices(vector<Wall>());
+    li2.calculateVertices(vector<Wall>());
 	#ifdef USE_SFML_WINDOW
 	while (window.isOpen())
     {
@@ -35,8 +42,9 @@ int main()
         }
 		
         window.clear();
-		//window.draw(li.getDrawable());
-		col.draw();
+		window.draw(li.getDrawable());
+		window.draw(li2.getDrawable());
+		//col.draw();
         window.display();
 
     }

@@ -14,9 +14,9 @@ float radianToDegree(float radians);
 class Lightray
 {
     int defaultLenght;
-    double angle;
-    sf::VertexArray vertices;
 public:
+    sf::VertexArray vertices;
+    double angle;
     void calculateVertices(vector<Wall> walls);
 	
     void setAngle(double angle);
