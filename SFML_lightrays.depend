@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1496652621 source:f:\fwsmi\github repositories\lightrays\lightray.cpp
+1496769468 source:f:\fwsmi\github repositories\lightrays\lightray.cpp
 	"Lightray.h"
 	<iostream>
 
-1496652606 f:\fwsmi\github repositories\lightrays\lightray.h
+1496766363 f:\fwsmi\github repositories\lightrays\lightray.h
 	<SFML/Graphics.hpp>
+	"Wall.h"
 
 1494189617 g:\friso\sfml gcc\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -404,8 +405,9 @@
 	"Lightray.h"
 	"Wall.h"
 
-1496652593 source:f:\fwsmi\github repositories\lightrays\collisionhandler.cpp
+1496766363 source:f:\fwsmi\github repositories\lightrays\collisionhandler.cpp
 	"CollisionHandler.h"
+	<cmath>
 
 1496651530 f:\fwsmi\github repositories\lightrays\wall.h
 	<SFML/Graphics.hpp>

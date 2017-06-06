@@ -2,7 +2,7 @@
 #include "CollisionHandler.h"
 //#include "Lightray.h"
 #include <SFML/Config.hpp>
-#include <math.h>
+#define M_PI		3.14159265358979323846
 
 #define USE_SFML_WINDOW
 
@@ -12,8 +12,8 @@ float degreeToRadian(float degree){
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!"); 
-	
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!");
+
 
     CollisionHandler col(window);
 
@@ -23,7 +23,7 @@ int main()
     Wall* wall = col.createWall(sf::Vector2f(30, 230), sf::Vector2f(230, 100));
 
 	col.draw();
-    
+
 	#ifdef USE_SFML_WINDOW
 	while (window.isOpen())
     {
@@ -33,7 +33,7 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-		
+
         window.clear();
 		//window.draw(li.getDrawable());
 		col.draw();

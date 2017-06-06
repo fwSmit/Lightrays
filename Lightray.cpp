@@ -1,6 +1,6 @@
 #include "Lightray.h"
 #include <iostream>
-#include <cmath>
+#define M_PI		3.14159265358979323846
 
 float radianToDegree(float radians){
 	return radians/M_PI * 180;
@@ -44,7 +44,7 @@ void Lightray::calculateVertices(vector<Wall> walls){
 	cout << "lineFunction: " << lineFuntion << endl;
 	for(int i = 0; i < walls.size(); i++){
 		// y = ax + b
-		
+
 		wallFunction = makeFunction(walls[i].getFirst(), walls[i].getSecond());
 		cout << wallFunction << endl;
 		sf::Vector2f temp = (vertices[0].position - walls[i].getFirst())/(wallFunction-lineFuntion);
@@ -53,7 +53,7 @@ void Lightray::calculateVertices(vector<Wall> walls){
 		cout << "X intersect = " << xIntersect << endl;
 		cout << "Y intersect = " << xIntersect << endl;
 	}
-	
+
     sf::Vertex newPosition = vertices[0];
     newPosition.position.x += defaultLenght * cos (angle);
     newPosition.position.y += defaultLenght * sin (angle);
