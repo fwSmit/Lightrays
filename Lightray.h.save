@@ -2,21 +2,35 @@
 #define LIGHTRAY_H
 
 #include <SFML/Graphics.hpp>
+#include "Wall.h"
+//#include <math.h>
 
 std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj);
 
 using namespace std;
 
+float radianToDegree(float radians);
+
 class Lightray
 {
-    const int defaultLenght;
-    double angle;
+    int defaultLenght;
     sf::VertexArray vertices;
-    void calculateVertices();
+    sf::Vector2f direction;
 public:
-    void setAngle(double angle)
-    void setStartingPosition(sf::Vector2f position);
-    Lightray(int angle, sf::Vector2f starting_position, const int maxLenght);
+    sf::VertexArray getVertices() const { return vertices; }
+    float getAngle() const { return angle; }
+    void calculateVertices(vector<Wall> walls);
+
+
+	/**
+ * @brief gives the value of a for the function y = ax + b
+ * @param first point on the funtion line
+ * @param second point on the funtion line
+ * @return slope of the line
+ * @warning negative slope is pointing up
+ */
+	float makeFunction(sf::Vector2f first, sf::Vector2f second);
+    Lightray(float angle, sf::Vector2f starting_position, const int maxLenght);
     virtual ~Lightray();
     sf::VertexArray getDrawable() const
     {

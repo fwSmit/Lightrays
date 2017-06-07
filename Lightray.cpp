@@ -1,6 +1,8 @@
 #include "Lightray.h"
 #include <iostream>
+#include <assert.h>
 #define M_PI		3.14159265358979323846
+#include "CollisionHandler.h"
 
 float radianToDegree(float radians){
 	return radians/M_PI * 180;
@@ -17,10 +19,9 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 /*!
 * @param  direction: (in degrees) the direction of the ray
 */
-Lightray::Lightray(double _angle, sf::Vector2f starting_position, const int maxLenght) : vertices(sf::LinesStrip), defaultLenght(maxLenght)
+Lightray::Lightray(sf::Vector2f starting_position, sf::Vector2f _direction, const int maxLenght) : direction(_direction), vertices(sf::Lines, 2), defaultLenght(maxLenght)
 {
-    setStartingPosition(starting_position);
-    angle = _angle;
+    vertices[0] = starting_position;
 }
 
 Lightray::~Lightray()
@@ -28,36 +29,25 @@ Lightray::~Lightray()
     //dtor
 }
 
-void Lightray::setStartingPosition(sf::Vector2f position){
-    if(vertices.getVertexCount() == 0){
-        vertices.append(sf::Vertex(position, sf::Color::Red));
-    }else{
-        vertices[0].position = position;
-    }
-}
 
 
 
-void Lightray::calculateVertices(vector<Wall> walls){
+
+void Lightray::calculateVertices(CollisionHandler& col){
     /**< WARNING: This could get out of bounds */
-	float wallFunction, lineFuntion = sin(angle);
-	cout << "lineFunction: " << lineFuntion << endl;
-	for(int i = 0; i < walls.size(); i++){
-		// y = ax + b
+    assert(vertices.getVertexCount() > 0);
 
-		wallFunction = makeFunction(walls[i].getFirst(), walls[i].getSecond());
-		cout << wallFunction << endl;
-		sf::Vector2f temp = (vertices[0].position - walls[i].getFirst())/(wallFunction-lineFuntion);
-		float xIntersect = temp.x + temp.y;
-		float yIntersect = wallFunction * (xIntersect - walls[i].getFirst().x) + walls[i].getFirst().y;
-		cout << "X intersect = " << xIntersect << endl;
-		cout << "Y intersect = " << xIntersect << endl;
-	}
+    sf::Vector2f deltaPos = direction - vertices[0].position;
 
-    sf::Vertex newPosition = vertices[0];
-    newPosition.position.x += defaultLenght * cos (angle);
-    newPosition.position.y += defaultLenght * sin (angle);
-    vertices.append(newPosition);
+    float lenght = sqrt(pow(deltaPos.x, 2) + pow(deltaPos.y, 2));
+
+    deltaPos *= defaultLenght / lenght;
+
+    vertices[1].position = vertices[0].position + deltaPos;
+
+    //sf::Vertex newPosition = vertices[0];
+    //newPosition.position.x += defaultLenght * cos (angle);
+    // newPosition.position.y += defaultLenght * sin (angle);
     //std::cout << newPosition.position;
 }
 

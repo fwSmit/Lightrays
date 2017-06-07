@@ -14,15 +14,17 @@ class CollisionHandler
     sf::RenderWindow& window;
     vector<Wall> walls;
 
-    public:
-        CollisionHandler(sf::RenderWindow& _window);
-        virtual ~CollisionHandler();
-        Lightray* createRay(double angle, sf::Vector2f starting_position);
-        Wall* createWall(sf::Vector2f _first, sf::Vector2f _second);
-        void draw();
-    protected:
 
-    private:
+public:
+    bool getIntersectWall(const sf::Vector2f& begin, const sf::Vector2f& end, const Wall& second, sf::Vector2f& result, bool debugPrint = false);
+    CollisionHandler(sf::RenderWindow& _window);
+    virtual ~CollisionHandler();
+    //Lightray* createRay(double angle, sf::Vector2f starting_position);
+    Wall* createWall(sf::Vector2f _first, sf::Vector2f _second);
+    void draw();
+protected:
+
+private:
 };
 
 #endif // COLLISIONHANDLER_H

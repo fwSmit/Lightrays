@@ -1,9 +1,11 @@
 # depslib dependency file v1.0
-1496769468 source:f:\fwsmi\github repositories\lightrays\lightray.cpp
+1496855593 source:f:\fwsmi\github repositories\lightrays\lightray.cpp
 	"Lightray.h"
 	<iostream>
+	<assert.h>
+	"CollisionHandler.h"
 
-1496766363 f:\fwsmi\github repositories\lightrays\lightray.h
+1496855819 f:\fwsmi\github repositories\lightrays\lightray.h
 	<SFML/Graphics.hpp>
 	"Wall.h"
 
@@ -395,23 +397,31 @@
 	<string>
 	<vector>
 
-1496652621 source:f:\fwsmi\github repositories\lightrays\source.cpp
+1496862241 source:f:\fwsmi\github repositories\lightrays\source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
+	<SFML/Config.hpp>
+	<iostream>
 
-1496652560 f:\fwsmi\github repositories\lightrays\collisionhandler.h
+1496855994 f:\fwsmi\github repositories\lightrays\collisionhandler.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"Lightray.h"
 	"Wall.h"
 
-1496766363 source:f:\fwsmi\github repositories\lightrays\collisionhandler.cpp
+1496862416 source:f:\fwsmi\github repositories\lightrays\collisionhandler.cpp
 	"CollisionHandler.h"
 	<cmath>
+	<assert.h>
 
-1496651530 f:\fwsmi\github repositories\lightrays\wall.h
+1496862156 f:\fwsmi\github repositories\lightrays\wall.h
 	<SFML/Graphics.hpp>
 
-1496651327 source:f:\fwsmi\github repositories\lightrays\wall.cpp
+1496857422 source:f:\fwsmi\github repositories\lightrays\wall.cpp
 	"Wall.h"
+
+1496777769 source:f:\fwsmi\github repositories\lightrays\raypath.cpp
+	"RayPath.h"
+
+1496777769 f:\fwsmi\github repositories\lightrays\raypath.h
 

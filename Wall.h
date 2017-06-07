@@ -5,8 +5,8 @@
 
 class Wall
 {
-    sf::Vector2f first, second;
 public:
+    sf::Vector2f first, second;
     Wall(sf::Vector2f _first, sf::Vector2f _second);
     virtual ~Wall();
     sf::Vector2f getFirst()     const   { return first;}

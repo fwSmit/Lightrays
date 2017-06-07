@@ -47,6 +47,8 @@
 		<Unit filename="CollisionHandler.h" />
 		<Unit filename="Lightray.cpp" />
 		<Unit filename="Lightray.h" />
+		<Unit filename="RayPath.cpp" />
+		<Unit filename="RayPath.h" />
 		<Unit filename="Wall.cpp" />
 		<Unit filename="Wall.h" />
 		<Unit filename="bin/Debug/openal32.dll">
