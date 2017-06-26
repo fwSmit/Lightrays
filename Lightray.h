@@ -13,13 +13,14 @@ float radianToDegree(float radians);
 
 class Lightray
 {
+    friend class CollisionHandler;
     int defaultLenght;
-    sf::Vector2f direction;
 public:
+    sf::Vector2f direction;
     sf::VertexArray vertices;
     sf::VertexArray getVertices() const { return vertices; }
     void calculateVertices(class CollisionHandler& col);
-
+    sf::Vector2f getDeltaPos();
 
 	/**
  * @brief gives the value of a for the function y = ax + b

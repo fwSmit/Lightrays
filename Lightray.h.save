@@ -13,14 +13,14 @@ float radianToDegree(float radians);
 
 class Lightray
 {
+    friend class CollisionHandler;
     int defaultLenght;
-    sf::VertexArray vertices;
-    sf::Vector2f direction;
 public:
+    sf::Vector2f direction;
+    sf::VertexArray vertices;
     sf::VertexArray getVertices() const { return vertices; }
-    float getAngle() const { return angle; }
-    void calculateVertices(vector<Wall> walls);
-
+    void calculateVertices(class CollisionHandler& col);
+    sf::Vector2f getDeltaPos();
 
 	/**
  * @brief gives the value of a for the function y = ax + b
@@ -30,7 +30,7 @@ public:
  * @warning negative slope is pointing up
  */
 	float makeFunction(sf::Vector2f first, sf::Vector2f second);
-    Lightray(float angle, sf::Vector2f starting_position, const int maxLenght);
+    Lightray(sf::Vector2f starting_position, sf::Vector2f _direction, const int maxLenght);
     virtual ~Lightray();
     sf::VertexArray getDrawable() const
     {
