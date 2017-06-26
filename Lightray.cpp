@@ -3,6 +3,7 @@
 #include <assert.h>
 #define M_PI		3.14159265358979323846
 #include "CollisionHandler.h"
+#include <cmath>
 
 float radianToDegree(float radians){
 	return radians/M_PI * 180;

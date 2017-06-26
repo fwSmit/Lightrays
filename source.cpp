@@ -3,6 +3,7 @@
 //#include "Lightray.h"
 #include <SFML/Config.hpp>
 #include <iostream>
+#include <cmath>
 #define M_PI		3.14159265358979323846
 
 #define USE_SFML_WINDOW
