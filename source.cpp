@@ -79,10 +79,12 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
-                case sf::Event::MouseButtonReleased:
+                /*case sf::Event::MouseButtonReleased:
                     if (event.mouseButton == event.MouseButtonEvent.button.Left){
                         cout << "afds" << endl;
                     }
+                    break;*/
+                default:
                     break;
                 }
         }
