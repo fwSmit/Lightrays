@@ -7,6 +7,8 @@
 #define M_PI		3.14159265358979323846
 
 #define USE_SFML_WINDOW
+using namespace std;
+
 
 float degreeToRadian(float degree)
 {
@@ -73,8 +75,16 @@ int main()
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
+                switch (event.type){
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                case sf::Event::MouseButtonReleased:
+                    if (event.mouseButton == event.MouseButtonEvent.button.Left){
+                        cout << "afds" << endl;
+                    }
+                    break;
+                }
         }
 
         window.clear();
