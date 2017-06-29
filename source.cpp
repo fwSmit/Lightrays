@@ -44,17 +44,18 @@ int main()
     //cout << op::rotate(sf::Vector2f(1,0), degreeToRadian(180));
     //cin.get();
     sf::ContextSettings settings;
-    settings.antialiasingLevel = 8;
+    settings.antialiasingLevel = 16;
     settings.majorVersion = 4;
+    settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!", sf::Style::Default, settings);
     sf::CircleShape intersect(10);
     intersect.setOrigin(sf::Vector2f(intersect.getRadius(), intersect.getRadius()));
     intersect.setFillColor(sf::Color::Green);
 
     CollisionHandler col(window);
-    //Lightray* ray = col.createRay(sf::Vector2f (0,0), sf::Vector2f(3,4));
-    col.createRay(sf::Vector2f (1000, 800), sf::Vector2f(3,4));
-    Wall* wall = col.createWall(sf::Vector2f(400, 600), sf::Vector2f(300, 100));
+    Lightray* ray = col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100));
+    Lightray* ray2 = col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4));
+    //Wall* wall = col.createWall(sf::Vector2f(400, 600), sf::Vector2f(300, 100));
     col.createWall(sf::Vector2f(400, 600), sf::Vector2f(230, 100));
     col.createWall(sf::Vector2f(400, 600), sf::Vector2f(400, 100));
     col.createWall(sf::Vector2f(10, 600), sf::Vector2f(40, 1000));
@@ -111,11 +112,19 @@ int main()
                     window.close();
                 }
                 break;
+
+            case sf::Event::MouseButtonReleased:
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    // left mouse button released
+                    ray->direction= sf::Vector2f(sf::Mouse::getPosition(window));
+    //col.createRay(sf::Vector2f (1000, 800), sf::Vector2f(3,4));
+                }
+                break;
             case sf::Event::Closed:
                 window.close();
                 break;
             case sf::Event::JoystickButtonReleased:
-                if(event.joystickButton.button == 1){
+                if(event.joystickButton.button == 1) {
                     window.close();
                 }
                 break;
@@ -123,6 +132,8 @@ int main()
                 break;
             }
         }
+        ray->direction = sf::Vector2f(sf::Mouse::getPosition(window));
+        ray2->direction = sf::Vector2f(sf::Mouse::getPosition(window));
 
         window.clear();
         col.draw();
