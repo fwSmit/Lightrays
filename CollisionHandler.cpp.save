@@ -15,18 +15,18 @@ CollisionHandler::~CollisionHandler()
 
 Lightray* CollisionHandler::createRay(sf::Vector2f starting_position, sf::Vector2f _direction)
 {
-    Lightray ray(starting_position, _direction, maxLenght);
-    rays.push_back(ray);
+    std::unique_ptr<Lightray> ray(new Lightray(starting_position, _direction, maxLenght));
+    rays.push_back(std::move(ray));
     std::cout << "created a ray" << std::endl;
-    std::cout << rays.size() << std::endl;
-    return &rays[rays.size()-1];
+    return rays.back().get();
 }
 
 Wall* CollisionHandler::createWall(sf::Vector2f _first, sf::Vector2f _second)
 {
-    walls.push_back(Wall(_first, _second));
+    std::unique_ptr<Wall> wall(new Wall(_first, _second));
+    walls.push_back(std::move(wall));
     std::cout << "created a wall" << std::endl;
-    return &walls[walls.size()-1];
+    return walls.back().get();
 
 }
 
@@ -35,13 +35,13 @@ void CollisionHandler::draw()
     update();
     sf::VertexArray lines_array(sf::Lines);
     for(size_t i = 0; i < walls.size(); i++) {
-        lines_array.append(walls[i].getFirst());
-        lines_array.append(walls[i].getSecond());
+        lines_array.append((*walls[i]).getFirst());
+        lines_array.append((*walls[i]).getSecond());
     }
 
     for(size_t i = 0; i < rays.size(); i++) {
         //rays[i].calculateVertices(walls);
-        window.draw(rays[i].getDrawable());
+        window.draw((*rays[i]).getDrawable());
     }
     window.draw(lines_array);
 }
@@ -65,7 +65,7 @@ bool CollisionHandler::isInBounds(const sf::Vector2f& begin, const sf::Vector2f&
 
 bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vector2f& end, const Wall& second, sf::Vector2f& result, bool debugDraw, bool debugPrint)
 {
-    std::cout << "in getIntersectWall b.position = " <<  end << std::endl;
+    //if(debugPrint) std::cout << "in getIntersectWall b.position = " <<  end << std::endl;
     // y = a(x - Px) + Py
 
     sf::Vector2f deltaPos_first = end - begin;
@@ -159,7 +159,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
 void CollisionHandler::update()
 {
     for(int i = 0; i < rays.size(); i++) {
-        update(rays[i]);
+        update(*rays[i]);
     }
 }
 
@@ -197,8 +197,8 @@ bool CollisionHandler::unIntersect(sf::Vertex& a, sf::Vertex& b)
     bool changed = false;
     //std::cout << "wall size " << walls.size() << std::endl;
     for(auto& currWall : walls) {
-        std::cout << "in unintersect b.position = " <<  b.position << std::endl;
-        if(getIntersectWall(a.position, b.position, currWall, result, true, true)) {
+        //std::cout << "in unintersect b.position = " <<  b.position << std::endl;
+        if(getIntersectWall(a.position, b.position, currWall, result, false, false)) {
             b.position = result;
             changed = true;
         }

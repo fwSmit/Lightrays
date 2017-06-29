@@ -2,6 +2,7 @@
 #define COLLISIONHANDLER_H
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 #include "Lightray.h"
 #include "Wall.h"
 
@@ -10,9 +11,9 @@ using namespace std;
 class CollisionHandler
 {
     const float maxLenght;
-    vector<Lightray> rays;
+    vector<std::unique_ptr<Lightray>> rays;
     sf::RenderWindow& window;
-    vector<Wall> walls;
+    vector<std::unique_ptr<Wall>> walls;
     bool getIntersectWall(const sf::Vector2f& begin, const sf::Vector2f& end, const Wall& second, sf::Vector2f& result, bool debugDraw = false, bool debugPrint = false);
     void update();
     void update(Lightray& ray);

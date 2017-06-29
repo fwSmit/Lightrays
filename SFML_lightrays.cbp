@@ -38,6 +38,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="G:/Friso/SFML gcc/SFML-2.4.2/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="G:/Friso/SFML gcc/SFML-2.4.2/lib" />
