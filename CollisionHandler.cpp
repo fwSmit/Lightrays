@@ -35,8 +35,8 @@ void CollisionHandler::draw()
     update();
     sf::VertexArray lines_array(sf::Lines);
     for(size_t i = 0; i < walls.size(); i++) {
-        lines_array.append((*walls[i]).getLeft());
-        lines_array.append((*walls[i]).getRight());
+        lines_array.append((*walls[i]).getFirstVertex());
+        lines_array.append((*walls[i]).getSecondVertex());
     }
 
     for(size_t i = 0; i < rays.size(); i++) {
@@ -69,7 +69,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
     // y = a(x - Px) + Py
 
     sf::Vector2f deltaPos_first = end - begin;
-    sf::Vector2f deltaPos_second = second.getRight() - second.getLeft();
+    sf::Vector2f deltaPos_second = second.getRightPosition() - second.getLeftPosition();
 
 
     // paralel lines
@@ -86,13 +86,13 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
                 // first is vertical
                 steepness = deltaPos_second.y/deltaPos_second.x;
                 x_vertical = begin.x;
-                point_normal = second.getLeft();
+                point_normal = second.getLeftPosition();
             } else {
                 //deltaPos_seocnd == 0
                 // second is vertical
                 isWall = true;
                 steepness = deltaPos_first.y/deltaPos_first.x;
-                x_vertical = second.getLeft().x;
+                x_vertical = second.getLeftPosition().x;
                 point_normal = begin;
             }
             float xIntersect = x_vertical;
@@ -119,7 +119,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
 
 
     sf::Vector2f positionFirst = begin;
-    sf::Vector2f positionSecond = second.getLeft();
+    sf::Vector2f positionSecond = second.getLeftPosition();
 
     if(debugPrint) {
         printf("steepness wall: %f \n ray: %f\n", steepness_first, steepness_second);
@@ -134,7 +134,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
 
     //check if intersection is in wall bounds
     //printf("xIntersect: %f, first x %f, second x %f \n", xIntersect, second.getFirst().x, second.getSecond().x);
-    if(xIntersect < second.getLeft().x || xIntersect > second.getRight().x) {
+    if(xIntersect < second.getLeftPosition().x || xIntersect > second.getRightPosition().x) {
         return false;
     }
 

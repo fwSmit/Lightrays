@@ -5,8 +5,9 @@
 
 class Wall
 {
+    sf::Vertex first, second;
 public:
-    sf::Vector2f first, second;
+    const static sf::Color defaultColor;
     Wall(sf::Vector2f _first, sf::Vector2f _second);
     virtual ~Wall();
     //sf::Vector2f getFirst()     const   { return first;}
@@ -14,10 +15,10 @@ public:
 
 
     // returns the left vertex (lowest x-coordinate
-    sf::Vector2f getLeft()          const;
+    sf::Vector2f getLeftPosition()          const;
 
     // returns the right vertex (highest x-coordinate)
-    sf::Vector2f getRight()         const;
+    sf::Vector2f getRightPosition()         const;
 
 
     // returns the highest vertex (highest y-coordinate)
@@ -25,6 +26,16 @@ public:
 
     // returns the lowest vertex (lowest y-coordinate)
     sf::Vector2f getBottom()        const;
+
+    void setFirst(sf::Vector2f _first) { first = _first; }
+
+    void setSecond(sf::Vector2f _second) { second = _second; }
+
+    void setColor (sf::Color color);
+
+    sf::Vertex getFirstVertex() const { return first; }
+    sf::Vertex getSecondVertex() const { return second; }
+
 protected:
 
 private:
