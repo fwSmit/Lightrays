@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1497187843 source:f:\fwsmi\github repositories\lightrays\lightray.cpp
+1498563032 source:f:\fwsmi\github repositories\lightrays\lightray.cpp
 	"Lightray.h"
 	<iostream>
 	<assert.h>
 	"CollisionHandler.h"
 	"vectorOperations.h"
 
-1497185259 f:\fwsmi\github repositories\lightrays\lightray.h
+1498563032 f:\fwsmi\github repositories\lightrays\lightray.h
 	<SFML/Graphics.hpp>
 	"Wall.h"
 
@@ -398,20 +398,21 @@
 	<string>
 	<vector>
 
-1497188963 source:f:\fwsmi\github repositories\lightrays\source.cpp
+1498565305 source:f:\fwsmi\github repositories\lightrays\source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
 	<iostream>
 	"vectorOperations.h"
+	<SFML/Window/ContextSettings.hpp>
 
-1497536241 f:\fwsmi\github repositories\lightrays\collisionhandler.h
+1498723868 f:\fwsmi\github repositories\lightrays\collisionhandler.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"Lightray.h"
 	"Wall.h"
 
-1497536241 source:f:\fwsmi\github repositories\lightrays\collisionhandler.cpp
+1498723944 source:f:\fwsmi\github repositories\lightrays\collisionhandler.cpp
 	"CollisionHandler.h"
 	<cmath>
 	<assert.h>
@@ -429,10 +430,10 @@
 
 1496777769 f:\fwsmi\github repositories\lightrays\raypath.h
 
-1497185909 f:\fwsmi\github repositories\lightrays\vectoroperations.h
+1498563032 f:\fwsmi\github repositories\lightrays\vectoroperations.h
 	"SFML/System/Vector2.hpp"
 	<cmath>
 
-1497185909 source:f:\fwsmi\github repositories\lightrays\vectoroperations.cpp
+1498563032 source:f:\fwsmi\github repositories\lightrays\vectoroperations.cpp
 	"vectorOperations.h"
 
