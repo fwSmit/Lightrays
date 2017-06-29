@@ -5,6 +5,8 @@
 #include <iostream>
 #include "vectorOperations.h"
 #include <SFML/Window/ContextSettings.hpp>
+#include <assert.h>
+
 #define M_PI		3.14159265358979323846
 
 #define USE_SFML_WINDOW
@@ -121,6 +123,17 @@ int main()
                 if(event.joystickButton.button == 1) {
                     window.close();
                 }
+                break;
+            case sf::Event::MouseButtonPressed:
+                if (event.mouseButton.button == sf::Mouse::Left){
+                    sf::Vector2f pos = sf::Vector2f(event.mouseButton.x - 1, event.mouseButton.y - 1);
+                    assert(ray->vertices.getVertexCount() > 0);
+                    ray->vertices[0].position = pos;
+                }
+                //cout << "ray vertices size" << ray->vertices.getVertexCount() << endl;
+                //cout << ray->getVertices()[0].position.x << endl;
+                    //ray->vertices[0] = /*sf::Vector2f(sf::Mouse::getPosition(window)) -*/sf::Vector2f (100 , 10);
+                    //ray->calculateVertices(col);
                 break;
             default:
                 break;
