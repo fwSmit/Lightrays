@@ -23,7 +23,7 @@ float degreeToRadian(float degree)
 int main()
 {
     int currentRay = -1;
-    int currentWall = 1;
+    int currentWall = 0;
     std::vector <Lightray* > rays;
     std::vector <Wall* > walls;
     //cout << op::rotate(sf::Vector2f(1,0), degreeToRadian(180));
@@ -42,8 +42,8 @@ int main()
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
     //Wall* wall = col.createWall(sf::Vector2f(400, 600), sf::Vector2f(300, 100));
     walls.push_back(col.createWall(sf::Vector2f(400, 600), sf::Vector2f(230, 100)));
-    walls.push_back(col.createWall(sf::Vector2f(400, 600), sf::Vector2f(400, 100)));
-    walls.push_back(col.createWall(sf::Vector2f(10, 600), sf::Vector2f(40, 1000)));
+    //walls.push_back(col.createWall(sf::Vector2f(400, 600), sf::Vector2f(400, 100)));
+    //walls.push_back(col.createWall(sf::Vector2f(10, 600), sf::Vector2f(40, 1000)));
 
     /*
         Lightray li(sf::Vector2f(300 ,100), sf::Vector2f(300, 400), sqrt(pow(window.getSize().x, 2) + pow(window.getSize().y, 2)));
@@ -95,18 +95,23 @@ int main()
             case sf::Event::KeyReleased:
                 if(event.key.code == sf::Keyboard::Escape) {
                     window.close();
+                    break;
                 }
                 if(event.key.code == sf::Keyboard::L){
                     currentRay++;
+                    break;
                 }
                 if(event.key.code == sf::Keyboard::K){
                     currentRay--;
+                    break;
                 }
                 if(event.key.code == sf::Keyboard::O){
                     currentWall--;
+                    break;
                 }
                 if(event.key.code == sf::Keyboard::P){
                     currentWall++;
+                    break;
                 }
                 break;
             case sf::Event::Closed:
@@ -149,14 +154,17 @@ int main()
         }
 
         if(walls.size() > 0 && currentWall >= 0){
-            for(int i = 0; i < rays.size(); i++){
+            for(int i = 0; i < walls.size(); i++){
                 walls[i]->setColor(sf::Color::White);
             }
-            if(currentWall > walls.size() -1){
+            if(currentWall > walls.size() - 1){
                 currentWall = 0;
             }
             walls[currentWall]->setColor(sf::Color::Green);
             walls[currentWall]->setFirst(sf::Vector2f(sf::Mouse::getPosition(window)));
+            //walls[currentWall]->setColor(sf::Color::Green);
+            cout << ((walls[currentWall]->getFirstVertex().color) == sf::Color::Green) << endl;
+            //cout << (walls[currentWall]->getFirstVertex().color == sf::Color::White) << endl;
         }
 
 

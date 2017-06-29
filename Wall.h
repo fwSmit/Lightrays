@@ -27,9 +27,9 @@ public:
     // returns the lowest vertex (lowest y-coordinate)
     sf::Vector2f getBottom()        const;
 
-    void setFirst(sf::Vector2f _first) { first = _first; }
+    void setFirst(sf::Vector2f _first) { first.position = _first; }
 
-    void setSecond(sf::Vector2f _second) { second = _second; }
+    void setSecond(sf::Vector2f _second) { second.position = _second; }
 
     void setColor (sf::Color color);
 

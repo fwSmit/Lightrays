@@ -36,6 +36,8 @@ void CollisionHandler::draw()
     sf::VertexArray lines_array(sf::Lines);
     for(size_t i = 0; i < walls.size(); i++) {
         lines_array.append((*walls[i]).getFirstVertex());
+        //lines_array.append(sf::Vertex(sf::Vector2f (10, 400), sf::Color::Green));
+        //lines_array.append(sf::Vertex(sf::Vector2f (100, 30), sf::Color::Green));
         lines_array.append((*walls[i]).getSecondVertex());
     }
 
