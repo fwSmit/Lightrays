@@ -117,6 +117,8 @@
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="source.cpp" />
+		<Unit filename="vectorOperations.cpp" />
+		<Unit filename="vectorOperations.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
