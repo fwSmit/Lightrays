@@ -20,10 +20,11 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 /*!
 * @param  direction: (in degrees) the direction of the ray
 */
-Lightray::Lightray(sf::Vector2f starting_position, sf::Vector2f _direction, const int maxLenght) : direction(_direction), vertices(sf::Lines, 3), defaultLenght(maxLenght)
+Lightray::Lightray(sf::Vector2f starting_position, sf::Vector2f _direction, const int maxLenght) : direction(_direction), vertices(sf::Lines, 2), defaultLenght(maxLenght)
 {
     vertices[0].position = starting_position;
     vertices[0].color = sf::Color::Yellow;
+    vertices[1].color = sf::Color::Yellow;
 }
 
 Lightray::~Lightray()
@@ -36,7 +37,30 @@ sf::Vector2f Lightray::getDeltaPos()
     return op::deltaPos(vertices[0].position, vertices[1].position);
 }
 
+void Lightray::setColor(sf::Color color)
+{
+    for(int i = 0; i< vertices.getVertexCount(); i++){
+        vertices[i].color = color;
+    }
+}
 
+
+void Lightray::setDirection(sf::Vector2f _direction)
+{
+    direction = _direction;
+}
+
+void Lightray::setPosition(sf::Vector2f _position)
+{
+    assert (getVertexCount() > 0);
+    vertices[0].position = _position;
+}
+
+sf::Vector2f Lightray::getPosition() const
+{
+    assert (getVertexCount() > 0);
+    return vertices[0].position;
+}
 
 
 void Lightray::calculateVertices(CollisionHandler& col){
@@ -50,7 +74,7 @@ void Lightray::calculateVertices(CollisionHandler& col){
     deltaPos *= defaultLenght / lenght;
 
     vertices[1].position = vertices[0].position + deltaPos;
-    vertices[1].color = sf::Color::Yellow;
+    //vertices[1].color = sf::Color::Yellow;
 
     //sf::Vector2f result;
     //if(col.getIntersectWall(vertices[0], vertices[1], result)){

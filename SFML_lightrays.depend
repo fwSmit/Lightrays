@@ -425,22 +425,25 @@
 
 1496777769 f:\fwsmi\github repositories\lightrays\raypath.h
 
-1497898781 source:/home/thestroyer/git_repos/Lightrays/CollisionHandler.cpp
+1498740164 source:/home/thestroyer/git_repos/Lightrays/CollisionHandler.cpp
 	"CollisionHandler.h"
 	<cmath>
 	<assert.h>
+	"vectorOperations.h"
+	<iostream>
 
-1497898781 /home/thestroyer/git_repos/Lightrays/CollisionHandler.h
+1498740164 /home/thestroyer/git_repos/Lightrays/CollisionHandler.h
 	<SFML/Graphics.hpp>
 	<vector>
+	<memory>
 	"Lightray.h"
 	"Wall.h"
 
-1497898781 /home/thestroyer/git_repos/Lightrays/Lightray.h
+1498742475 /home/thestroyer/git_repos/Lightrays/Lightray.h
 	<SFML/Graphics.hpp>
 	"Wall.h"
 
-1497898781 /home/thestroyer/git_repos/Lightrays/Wall.h
+1498744210 /home/thestroyer/git_repos/Lightrays/Wall.h
 	<SFML/Graphics.hpp>
 
 1497898781 source:/home/thestroyer/git_repos/Lightrays/RayPath.cpp
@@ -451,17 +454,26 @@
 1497898781 source:/home/thestroyer/git_repos/Lightrays/Wall.cpp
 	"Wall.h"
 
-1497899162 source:/home/thestroyer/git_repos/Lightrays/Lightray.cpp
+1498742754 source:/home/thestroyer/git_repos/Lightrays/Lightray.cpp
 	"Lightray.h"
 	<iostream>
 	<assert.h>
 	"CollisionHandler.h"
-	<cmath>
+	"vectorOperations.h"
 
-1497899128 source:/home/thestroyer/git_repos/Lightrays/source.cpp
+1498743497 source:/home/thestroyer/git_repos/Lightrays/source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
 	<iostream>
+	"vectorOperations.h"
+	<SFML/Window/ContextSettings.hpp>
+	<assert.h>
+
+1498740165 /home/thestroyer/git_repos/Lightrays/vectorOperations.h
+	"SFML/System/Vector2.hpp"
 	<cmath>
+
+1498740165 source:/home/thestroyer/git_repos/Lightrays/vectorOperations.cpp
+	"vectorOperations.h"
 

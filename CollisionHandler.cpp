@@ -35,8 +35,8 @@ void CollisionHandler::draw()
     update();
     sf::VertexArray lines_array(sf::Lines);
     for(size_t i = 0; i < walls.size(); i++) {
-        lines_array.append((*walls[i]).getFirst());
-        lines_array.append((*walls[i]).getSecond());
+        lines_array.append((*walls[i]).getLeft());
+        lines_array.append((*walls[i]).getRight());
     }
 
     for(size_t i = 0; i < rays.size(); i++) {
@@ -69,7 +69,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
     // y = a(x - Px) + Py
 
     sf::Vector2f deltaPos_first = end - begin;
-    sf::Vector2f deltaPos_second = second.getSecond() - second.getFirst();
+    sf::Vector2f deltaPos_second = second.getRight() - second.getLeft();
 
 
     // paralel lines
@@ -86,20 +86,20 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
                 // first is vertical
                 steepness = deltaPos_second.y/deltaPos_second.x;
                 x_vertical = begin.x;
-                point_normal = second.getFirst();
+                point_normal = second.getLeft();
             } else {
                 //deltaPos_seocnd == 0
                 // second is vertical
                 isWall = true;
                 steepness = deltaPos_first.y/deltaPos_first.x;
-                x_vertical = second.getFirst().x;
+                x_vertical = second.getLeft().x;
                 point_normal = begin;
             }
             float xIntersect = x_vertical;
             float yIntersect = steepness * (xIntersect - point_normal.x) + point_normal.y;
             if(isWall) {
-                float highestY = max(second.getFirst().y, second.getSecond().y);
-                float lowestY = min(second.getFirst().y, second.getSecond().y);
+                float highestY = second.getTop().y; //max(second.getFirst().y, second.getSecond().y);
+                float lowestY = second.getBottom().y; //min(second.getFirst().y, second.getSecond().y);
                 if(yIntersect > highestY || yIntersect < lowestY) {
                     return false;
                 }
@@ -119,7 +119,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
 
 
     sf::Vector2f positionFirst = begin;
-    sf::Vector2f positionSecond = second.getFirst();
+    sf::Vector2f positionSecond = second.getLeft();
 
     if(debugPrint) {
         printf("steepness wall: %f \n ray: %f\n", steepness_first, steepness_second);
@@ -134,7 +134,7 @@ bool CollisionHandler::getIntersectWall(const sf::Vector2f& begin, const sf::Vec
 
     //check if intersection is in wall bounds
     //printf("xIntersect: %f, first x %f, second x %f \n", xIntersect, second.getFirst().x, second.getSecond().x);
-    if(xIntersect < second.getFirst().x || xIntersect > second.getSecond().x) {
+    if(xIntersect < second.getLeft().x || xIntersect > second.getRight().x) {
         return false;
     }
 
