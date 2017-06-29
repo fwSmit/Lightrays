@@ -162,9 +162,6 @@ int main()
             }
             walls[currentWall]->setColor(sf::Color::Green);
             walls[currentWall]->setFirst(sf::Vector2f(sf::Mouse::getPosition(window)));
-            //walls[currentWall]->setColor(sf::Color::Green);
-            cout << ((walls[currentWall]->getFirstVertex().color) == sf::Color::Green) << endl;
-            //cout << (walls[currentWall]->getFirstVertex().color == sf::Color::White) << endl;
         }
 
 
