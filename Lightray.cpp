@@ -3,7 +3,7 @@
 #include <assert.h>
 #define M_PI		3.14159265358979323846
 #include "CollisionHandler.h"
-#include <cmath>
+#include "vectorOperations.h"
 
 float radianToDegree(float radians){
 	return radians/M_PI * 180;
@@ -20,9 +20,10 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 /*!
 * @param  direction: (in degrees) the direction of the ray
 */
-Lightray::Lightray(sf::Vector2f starting_position, sf::Vector2f _direction, const int maxLenght) : direction(_direction), vertices(sf::Lines, 2), defaultLenght(maxLenght)
+Lightray::Lightray(sf::Vector2f starting_position, sf::Vector2f _direction, const int maxLenght) : direction(_direction), vertices(sf::Lines, 3), defaultLenght(maxLenght)
 {
-    vertices[0] = starting_position;
+    vertices[0].position = starting_position;
+    vertices[0].color = sf::Color::Yellow;
 }
 
 Lightray::~Lightray()
@@ -30,6 +31,10 @@ Lightray::~Lightray()
     //dtor
 }
 
+sf::Vector2f Lightray::getDeltaPos()
+{
+    return op::deltaPos(vertices[0].position, vertices[1].position);
+}
 
 
 
@@ -45,6 +50,12 @@ void Lightray::calculateVertices(CollisionHandler& col){
     deltaPos *= defaultLenght / lenght;
 
     vertices[1].position = vertices[0].position + deltaPos;
+    vertices[1].color = sf::Color::Yellow;
+
+    //sf::Vector2f result;
+    //if(col.getIntersectWall(vertices[0], vertices[1], result)){
+
+    //}
 
     //sf::Vertex newPosition = vertices[0];
     //newPosition.position.x += defaultLenght * cos (angle);
