@@ -11,6 +11,23 @@ sf::Vector2f rotate(const sf::Vector2f& in, const float r)
     return result;
 }
 
+/**
+ * @brief gives the value of a for the function y = ax + b
+ * @param first point on the funtion line
+ * @param second point on the funtion line
+ * @return slope of the line
+ * @warning negative slope is pointing up
+ */
+/*float makeFunction(const sf::Vector2f& first, const sf::Vector2f& second)
+{
+	sf::Vector2f deltaPos = second - first;
+	//cout << deltaPos;
+	sf::Vector2f result;
+	result.x = deltaPos.y/deltaPos.x;
+	//result.y = first.y - result.x * first.x;
+	return result.x;
+}*/
+
 
 float angle(const sf::Vector2f& a, const sf::Vector2f& b)
 {
