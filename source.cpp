@@ -14,6 +14,38 @@
 using namespace std;
 
 
+class A {
+    public:
+    virtual void print(){
+        std::cout << "class a" << std::endl;
+    }
+};
+
+class B : public A {
+    public:
+    virtual void print(){
+        std::cout << "class B" << std::endl;
+    }
+};
+
+class C : public B {
+    public:
+    virtual void print(){
+        std::cout << "class C" << std::endl;
+    }
+};
+
+class D : public A {
+
+};
+
+class E : public D{
+    public:
+        virtual void print(){
+        std::cout << "class E" << std::endl;
+        }
+};
+
 float degreeToRadian(float degree)
 {
     return (degree) * (M_PI/180);
@@ -23,6 +55,16 @@ float degreeToRadian(float degree)
 
 int main()
 {
+    A base;
+    B first;
+    C second;
+    D third;
+    E last;
+    base.print();
+    first.print();
+    second.print();
+    third.print();
+    last.print();
     //int currentRay = -1;
     //int currentWall = 0;
     //std::vector <Lightray* > rays;
@@ -34,9 +76,11 @@ int main()
     settings.majorVersion = 4;
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!", sf::Style::Default, settings);
-    Lightray ray (sf::Vector2f (10, 400), 0, 10000);
+    Lightray ray (sf::Vector2f (100, 400), 0, 10000);
+    Lightray ray2 (sf::Vector2f (100, 600), 0.25 * M_PI, 10000);
     RayPath rayPath;
     rayPath.addRay(ray);
+    rayPath.addRay(ray2);
     //CollisionHandler col(window);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
@@ -170,7 +214,7 @@ double i = 0;
         //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
         //ray.setDirection(i);
-        window.draw(ray.getDrawable());
+        window.draw(rayPath.getDrawable());
         //col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();

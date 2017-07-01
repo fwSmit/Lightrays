@@ -1,8 +1,9 @@
 #include "Lightray.h"
 #include "RayPath.h"
+#include <iostream>
 
 
-RayPath::RayPath() : vertices(sf::Lines, 0)
+RayPath::RayPath() : vertices(sf::LinesStrip, 0)
 {
     //ctor
 }
@@ -29,6 +30,9 @@ sf::VertexArray RayPath::getDrawable() const
     if(isLastrayValid)
     {
         vertices_result.append(lastRay.getEnd());
+    }
+    for(int i = 0; i < vertices_result.getVertexCount(); i++){
+            vertices_result[i].color = currColor;
     }
     return vertices_result;
 }
