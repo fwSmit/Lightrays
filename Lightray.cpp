@@ -23,8 +23,16 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 */
 Lightray::Lightray(const sf::Vector2f& _position, const double _direction, const int maxLenght) : position(_position), r_direction(_direction), maxLenght(maxLenght)
 {
-
+    initialized = true;
 }
+
+void Lightray::checkInitialized() const {
+    if(!initialized){
+        std::logic_error ex("Object of class Lightray was not initialized");
+        throw ex;
+    }
+}
+
 
 Lightray::~Lightray()
 {
@@ -33,11 +41,13 @@ Lightray::~Lightray()
 
 void Lightray::setColor(sf::Color color)
 {
+    checkInitialized();
     currColor = color;
 }
 
 sf::VertexArray Lightray::getDrawable() const
 {
+    checkInitialized();
     sf::VertexArray vertices(sf::Lines, 2);
     vertices[0].position = getBegin();
     vertices[0].color = currColor;
@@ -50,17 +60,20 @@ sf::VertexArray Lightray::getDrawable() const
 
 void Lightray::setDirection(double _direction)
 {
+    checkInitialized();
     r_direction = _direction;
 }
 
 void Lightray::setPosition(sf::Vector2f _position)
 {
+    checkInitialized();
     position = _position;
 }
 
 
 sf::Vector2f Lightray::getEnd() const
 {
+    checkInitialized();
     sf::Vector2f result;
     result.x = getBegin().x + maxLenght * cos (r_direction);
     result.y = getBegin().y + maxLenght * sin (r_direction);

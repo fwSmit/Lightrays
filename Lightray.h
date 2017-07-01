@@ -17,9 +17,12 @@ class Lightray
     double r_direction;
     sf::Vector2f position;
     sf::Color currColor = sf::Color::Yellow;
+    bool initialized;
+    void checkInitialized() const;
 public:
     sf::Vector2f getBegin() const
     {
+        checkInitialized();
         return position;
     }
     sf::Vector2f getEnd() const;
@@ -36,6 +39,8 @@ public:
 
     Lightray(const sf::Vector2f& position, const double _direction, const int maxLenght);
     virtual ~Lightray();
+
+    Lightray(){ initialized = false; }
 
 protected:
 

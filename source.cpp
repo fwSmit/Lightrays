@@ -6,6 +6,7 @@
 #include "vectorOperations.h"
 #include <SFML/Window/ContextSettings.hpp>
 #include <assert.h>
+#include "RayPath.h"
 
 #define M_PI		3.14159265358979323846
 
@@ -34,6 +35,8 @@ int main()
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!", sf::Style::Default, settings);
     Lightray ray (sf::Vector2f (10, 400), 0, 10000);
+    RayPath rayPath;
+    rayPath.addRay(ray);
     //CollisionHandler col(window);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
@@ -166,7 +169,7 @@ double i = 0;
 
         //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
-        ray.setDirection(i);
+        //ray.setDirection(i);
         window.draw(ray.getDrawable());
         //col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
