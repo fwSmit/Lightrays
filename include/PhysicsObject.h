@@ -8,7 +8,7 @@ class PhysicsObject
         PhysicsObject(){};
         virtual ~PhysicsObject(){};
         virtual sf::VertexArray getDrawable() = 0;
-        virtual void collide (const class Lightray& ray, const class Hitresult& hitresult) = 0;
+        virtual bool collide (const class Lightray& ray, class Hitresult& hitresult) = 0;
     protected:
 
     private:

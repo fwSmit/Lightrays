@@ -50,10 +50,10 @@ int main()
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
     window.setPosition(sf::Vector2i(0, 0));
     Lightray ray (sf::Vector2f (100, 400), 0, 10000);
-    Lightray ray2 (sf::Vector2f (100, 600), 0.25 * M_PI, 10000);
-    RayPath rayPath;
-    rayPath.addRay(ray);
-    rayPath.addRay(ray2);
+    TwoPointObject obj(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
+    TwoPointObject obj2(sf::Vector2f(20, 600), sf::Vector2f(300, 700), window);
+    TwoPointObject obj3(sf::Vector2f(20, 600), sf::Vector2f(30, 50), window);
+    TwoPointObject obj4(sf::Vector2f(300, 100), sf::Vector2f(30, 50), window);
     //CollisionHandler col(window);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
@@ -186,11 +186,22 @@ double i = 0;
         //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
         //ray.setDirection(i);
-        window.draw(rayPath.getDrawable());
+
+        window.draw(ray.getDrawable());
+        ray.setDirection(i);
+        window.draw(obj.getDrawable());
+        window.draw(obj2.getDrawable());
+        window.draw(obj3.getDrawable());
+        window.draw(obj4.getDrawable());
+        Hitresult hit;
+        obj.collide(ray, hit);
+        obj2.collide(ray, hit);
+        obj3.collide(ray, hit);
+        obj4.collide(ray, hit);
         //col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();
-        i+= 0.01;
+        i+= 0.003;
 
     }
 #endif

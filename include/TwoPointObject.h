@@ -10,11 +10,12 @@
 class TwoPointObject : public PhysicsObject
 {
     sf::Vertex first, second;
+    sf::RenderWindow& window;
     bool isInBounds(const sf::Vector2f& test , const Lightray& ray) const;
 public:
     inline virtual sf::Color getDefaultColor() { return sf::Color::Red; }
 
-    TwoPointObject(sf::Vector2f _first, sf::Vector2f _second);
+    TwoPointObject(sf::Vector2f _first, sf::Vector2f _second, sf::RenderWindow& debugWindow);
     virtual ~TwoPointObject();
 
     // returns the left vertex (lowest x-coordinate
@@ -48,11 +49,13 @@ public:
 
     virtual sf::VertexArray getDrawable() override;
 
-    virtual void collide (const class Lightray& ray, const class Hitresult& hitresult) override;
+    virtual bool collide (const class Lightray& ray, class Hitresult& hitresult) override;
 
-    virtual HitType getHitResultType(sf::Vector2f hitPosition) { return Hitresult(); }
+    virtual Hitresult getHitResult(sf::Vector2f hitPosition) { return Hitresult(); }
 
+    bool checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult);
 
+    void drawDebugCircle(sf::Vector2f position);
 };
 
 #endif // TWOPOINTOBJECT_H

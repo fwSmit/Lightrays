@@ -10,6 +10,25 @@ float radianToDegree(float radians)
     return radians/M_PI * 180;
 }
 
+float boundToTwoPi(float degrees)
+{
+    if(degrees > 0)
+    {
+        while (degrees >= 2*M_PI)
+        {
+            degrees -= 2*M_PI;
+        }
+    }
+    else
+    {
+        while (degrees < 0)
+        {
+            degrees += 2*M_PI;
+        }
+    }
+    return degrees;
+}
+
 std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 {
     os << obj.x << "    " << obj.y << std::endl;
@@ -21,13 +40,16 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 /*!
 * @param  direction: (in degrees) the direction of the ray
 */
-Lightray::Lightray(const sf::Vector2f& _position, const double _direction, const int maxLenght) : position(_position), r_direction(_direction), maxLenght(maxLenght)
+Lightray::Lightray(const sf::Vector2f& _position, const double _direction, const int maxLenght) : position(_position), maxLenght(maxLenght)
 {
     initialized = true;
+    setDirection(_direction);
 }
 
-void Lightray::checkInitialized() const {
-    if(!initialized){
+void Lightray::checkInitialized() const
+{
+    if(!initialized)
+    {
         std::logic_error ex("Object of class Lightray was not initialized");
         throw ex;
     }
@@ -61,7 +83,7 @@ sf::VertexArray Lightray::getDrawable() const
 void Lightray::setDirection(double _direction)
 {
     checkInitialized();
-    r_direction = _direction;
+    r_direction = boundToTwoPi(_direction);
 }
 
 void Lightray::setPosition(sf::Vector2f _position)
