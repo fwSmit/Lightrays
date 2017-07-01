@@ -2,12 +2,15 @@
 #define TWOPOINTOBJECT_H
 
 #include <SFML/Graphics.hpp>
+#include "PhysicsObject.h"
+#include "Hitresult.h"
 
 
-class TwoPointObject
+
+class TwoPointObject : public PhysicsObject
 {
     sf::Vertex first, second;
-
+    bool isInBounds(const sf::Vector2f& test , const Lightray& ray) const;
 public:
     inline virtual sf::Color getDefaultColor() { return sf::Color::Red; }
 
@@ -27,6 +30,12 @@ public:
     // returns the lowest vertex (lowest y-coordinate)
     sf::Vector2f getBottom()        const;
 
+    // this is faster than the get top, bottom, left, right
+    sf::Vector2f getFirstPosition()        const { return first.position; };
+
+    // this is faster than the get top, bottom, left, right
+    sf::Vector2f getSecondPosition()        const { return second.position; };
+
     sf::Vertex getFirstVertex() const { return first; }
     sf::Vertex getSecondVertex() const { return second; }
 
@@ -35,6 +44,13 @@ public:
     void setSecond(sf::Vector2f _second) { second.position = _second; }
 
     void setColor (sf::Color color);
+
+
+    virtual sf::VertexArray getDrawable() override;
+
+    virtual void collide (const class Lightray& ray, const class Hitresult& hitresult) override;
+
+    virtual HitType getHitResultType(sf::Vector2f hitPosition) { return Hitresult(); }
 
 
 };

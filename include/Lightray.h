@@ -13,13 +13,14 @@ float radianToDegree(float radians);
 
 class Lightray
 {
-    int maxLenght;
-    double r_direction;
     sf::Vector2f position;
+    double r_direction;
+    int maxLenght;
     sf::Color currColor = sf::Color::Yellow;
     bool initialized;
     void checkInitialized() const;
 public:
+
     sf::Vector2f getBegin() const
     {
         checkInitialized();
@@ -27,6 +28,7 @@ public:
     }
     sf::Vector2f getEnd() const;
 
+    double getDirection() const { return r_direction; }
     // direction in radians.
     /**0 is pointing to the right*/
     void setDirection (double direction);

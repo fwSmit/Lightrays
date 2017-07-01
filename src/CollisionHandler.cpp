@@ -13,7 +13,7 @@ CollisionHandler::~CollisionHandler()
     //dtor
 }
 
-Lightray* CollisionHandler::createRay(sf::Vector2f starting_position, sf::Vector2f _direction)
+Lightray* CollisionHandler::createRay(sf::Vector2f starting_position, double _direction)
 {
     std::unique_ptr<Lightray> ray(new Lightray(starting_position, _direction, maxLenght));
     rays.push_back(std::move(ray));
@@ -179,7 +179,6 @@ void CollisionHandler::drawDebugCircle(sf::Vector2f position, bool debugDraw)
 
 void CollisionHandler::update(Lightray& ray)
 {
-    ray.calculateVertices(*this);
 
     // you can't use copy or const reference, because the vertices are changed
     if(unIntersect(ray.vertices[0], ray.vertices[1])) {

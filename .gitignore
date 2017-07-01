@@ -51,3 +51,6 @@ SFML_lightrays.cbp
 SFML_lightrays.depend
 SFML_lightrays.layout
 
+# the object files the compiler generates
+*.obj
+*.o

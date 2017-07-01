@@ -31,7 +31,7 @@ sf::VertexArray RayPath::getDrawable() const
     {
         vertices_result.append(lastRay.getEnd());
     }
-    for(int i = 0; i < vertices_result.getVertexCount(); i++){
+    for(size_t i = 0; i < vertices_result.getVertexCount(); i++){
             vertices_result[i].color = currColor;
     }
     return vertices_result;

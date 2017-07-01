@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
-#include "CollisionHandler.h"
+//#include "CollisionHandler.h"
 //#include "Lightray.h"
 #include <SFML/Config.hpp>
 #include <iostream>
 #include "vectorOperations.h"
 #include <SFML/Window/ContextSettings.hpp>
 #include <assert.h>
+#include "RayPath.h"
 
 #define M_PI		3.14159265358979323846
 
@@ -18,52 +19,48 @@ float degreeToRadian(float degree)
     return (degree) * (M_PI/180);
 }
 
-/*sf::Vector2f getIntersect(const Lightray& first, const Lightray& second, sf::Vector2f& result)
-{
-    float angle_first = first.angle;
-    float angle_second = second.angle;
+/*
+class A {
+public:
+    virtual void print(){
+        cout << "class a" << endl;
+    }
+};
 
-    float steepness_first = tan(angle_first);
-    float steepness_second = tan(angle_second);
-
-    // y = a(x - Px) + Py
-
-    sf::Vector2f positionFirst = first.vertices[0].position;
-    sf::Vector2f positionSecond = second.vertices[0].position;
-
-    float xIntersect = (steepness_first*positionFirst.x - positionFirst.y - steepness_second * positionSecond.x + positionSecond.y)/(steepness_first - steepness_second);
-
-    printf("angles are %f and %f\n", radianToDegree(angle_first), radianToDegree(angle_second));
-
-    printf("steepness is %f and %f\n", steepness_first, steepness_second);
-
-    printf("x intersect is %f \n", xIntersect);
-    return sf::Vector2f(300, 20);
-}*/
-
-
-
+class B : public A{
+public:
+    virtual void print(){
+        cout << "class  B" << endl;
+    }
+};
+*/
 int main()
 {
+
+    //int currentRay = -1;
+    //int currentWall = 0;
+    //std::vector <Lightray* > rays;
+    //std::vector <Wall* > walls;
     //cout << op::rotate(sf::Vector2f(1,0), degreeToRadian(180));
     //cin.get();
     sf::ContextSettings settings;
     settings.antialiasingLevel = 16;
     settings.majorVersion = 4;
     settings.minorVersion = 5;
-    sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!", sf::Style::Default, settings);
-    sf::CircleShape intersect(10);
-    intersect.setOrigin(sf::Vector2f(intersect.getRadius(), intersect.getRadius()));
-    intersect.setFillColor(sf::Color::Green);
-
-    CollisionHandler col(window);
-    Lightray* ray = col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100));
-    Lightray* ray2 = col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4));
+    sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
+    window.setPosition(sf::Vector2i(0, 0));
+    Lightray ray (sf::Vector2f (100, 400), 0, 10000);
+    Lightray ray2 (sf::Vector2f (100, 600), 0.25 * M_PI, 10000);
+    RayPath rayPath;
+    rayPath.addRay(ray);
+    rayPath.addRay(ray2);
+    //CollisionHandler col(window);
+    /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
+    rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
     //Wall* wall = col.createWall(sf::Vector2f(400, 600), sf::Vector2f(300, 100));
-    col.createWall(sf::Vector2f(400, 600), sf::Vector2f(230, 100));
-    col.createWall(sf::Vector2f(400, 600), sf::Vector2f(400, 100));
-    col.createWall(sf::Vector2f(10, 600), sf::Vector2f(40, 1000));
-
+    walls.push_back(col.createWall(sf::Vector2f(400, 600), sf::Vector2f(230, 100)));*/
+    //walls.push_back(col.createWall(sf::Vector2f(400, 600), sf::Vector2f(400, 100)));
+    //walls.push_back(col.createWall(sf::Vector2f(10, 600), sf::Vector2f(40, 1000)));
     /*
         Lightray li(sf::Vector2f(300 ,100), sf::Vector2f(300, 400), sqrt(pow(window.getSize().x, 2) + pow(window.getSize().y, 2)));
         Lightray li2( sf::Vector2f(405, 300), sf::Vector2f(300, 400), sqrt(pow(window.getSize().x, 2) + pow(window.getSize().y, 2)));
@@ -106,6 +103,7 @@ int main()
     //cout << col.unIntersect(ray->vertices[0], ray->vertices[1], *wall) << endl;
 
 #ifdef USE_SFML_WINDOW
+double i = 0;
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -114,7 +112,24 @@ int main()
             case sf::Event::KeyReleased:
                 if(event.key.code == sf::Keyboard::Escape) {
                     window.close();
+                    break;
                 }
+                /*if(event.key.code == sf::Keyboard::L){
+                    currentRay++;
+                    break;
+                }
+                if(event.key.code == sf::Keyboard::K){
+                    currentRay--;
+                    break;
+                }
+                if(event.key.code == sf::Keyboard::O){
+                    currentWall--;
+                    break;
+                }
+                if(event.key.code == sf::Keyboard::P){
+                    currentWall++;
+                    break;
+                }*/
                 break;
             case sf::Event::Closed:
                 window.close();
@@ -124,28 +139,58 @@ int main()
                     window.close();
                 }
                 break;
+
             case sf::Event::MouseButtonPressed:
                 if (event.mouseButton.button == sf::Mouse::Left){
-                    sf::Vector2f pos = (event.mouseButton.x, event.mouseButton.y);
-                    assert(ray->vertices.getVertexCount() > 0);
-                    ray->vertices[0].position = p
+                    /*sf::Vector2f pos = sf::Vector2f(event.mouseButton.x - 1, event.mouseButton.y - 1);
+                    if(rays.size() > 0 && currentRay >= 0){
+                        rays[currentRay]->setPosition(pos);
+                    }*/
                 }
                 //cout << "ray vertices size" << ray->vertices.getVertexCount() << endl;
                 //cout << ray->getVertices()[0].position.x << endl;
                     //ray->vertices[0] = /*sf::Vector2f(sf::Mouse::getPosition(window)) -*/sf::Vector2f (100 , 10);
                     //ray->calculateVertices(col);
                 break;
-            default:
+
+                default:
                 break;
             }
         }
-        ray->direction = sf::Vector2f(sf::Mouse::getPosition(window));
-        ray2->direction = sf::Vector2f(sf::Mouse::getPosition(window));
 
+
+        /*if(rays.size() > 0 && currentRay >= 0){
+            for(int i = 0; i < rays.size(); i++){
+                rays[i]->setColor(sf::Color::Yellow);
+            }
+            if(currentRay > rays.size() -1){
+                currentRay = 0;
+            }
+            rays[currentRay]->setColor(sf::Color::Green);
+            rays[currentRay]->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
+        }
+
+        if(walls.size() > 0 && currentWall >= 0){
+            for(int i = 0; i < walls.size(); i++){
+                walls[i]->setColor(sf::Color::White);
+            }
+            if(currentWall > walls.size() - 1){
+                currentWall = 0;
+            }
+            walls[currentWall]->setColor(sf::Color::Green);
+            walls[currentWall]->setFirst(sf::Vector2f(sf::Mouse::getPosition(window)));
+        }*/
+
+
+
+        //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
-        col.draw();
+        //ray.setDirection(i);
+        window.draw(rayPath.getDrawable());
+        //col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();
+        i+= 0.01;
 
     }
 #endif
