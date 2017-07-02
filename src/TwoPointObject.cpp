@@ -84,7 +84,7 @@ sf::VertexArray TwoPointObject::getDrawable()
     return vertices;
 }
 
-bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult)
+bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult, bool debugDraw)
 {
     bool isRayVertical = std::abs(ray.getDirection()) == M_PI / 4;
     bool isThisVertical = getFirstPosition().x == getSecondPosition().x;
@@ -126,7 +126,7 @@ bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult)
         intersection.x = x_vertical;
         intersection.y = steepness * (intersection.x - point_normal.x) + point_normal.y;
         cout << "intersection " << intersection << endl;
-        return checkHit(intersection, ray, hitresult);
+        return checkHit(intersection, ray, hitresult, debugDraw);
     }
 
     // neither of them is vertical
@@ -155,7 +155,7 @@ bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult)
     //printf("xIntersect: %f, first x %f, second x %f \n", xIntersect, second.getFirst().x, second.getSecond().x);
     intersection.y = steepness_ray * (intersection.x - positionRay.x) + positionRay.y;
 
-    return checkHit(intersection, ray, hitresult);
+    return checkHit(intersection, ray, hitresult, debugDraw);
 
     /*if(debugPrint) {
         printf("x intersect is %f \n", xIntersect);
@@ -166,12 +166,12 @@ bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult)
 
 }
 
-bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult)
+bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult, bool debugDraw)
 {
     if(isInBounds(intersection, ray))
     {
         hitResult = getHitResult(intersection);
-        drawDebugCircle(intersection);
+        drawDebugCircle(intersection, debugDraw);
         return true;
     }
     else
@@ -181,22 +181,26 @@ bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& 
     }
 }
 
-void TwoPointObject::drawDebugCircle(sf::Vector2f position)
+void TwoPointObject::drawDebugCircle(sf::Vector2f position, bool debugDraw)
 {
-    sf::CircleShape debugCircle(10);
-    debugCircle.setOrigin(debugCircle.getRadius(), debugCircle.getRadius());
-    debugCircle.setFillColor(sf::Color::Green);
-    debugCircle.setPosition(position);
-    window.draw(debugCircle);
+    if(debugDraw)
+    {
+        sf::CircleShape debugCircle(5);
+        debugCircle.setOrigin(debugCircle.getRadius(), debugCircle.getRadius());
+        sf::Color color = sf::Color::Green;
+        color.a = 100;
+        debugCircle.setFillColor(color);
+        debugCircle.setPosition(position);
+        window.draw(debugCircle);
+    }
 }
-
 
 bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) const
 {
     bool pointsLeft = ray.getDirection() > M_PI_2 && ray.getDirection() < 2*M_PI - M_PI_2;
     cout << "points left " << boolalpha << pointsLeft << endl;
     bool outOfBoundsRayX = pointsLeft ? /* points left */test.x > ray.getBegin().x
-    : test.x < ray.getBegin().x;/* points right */
+                           : test.x < ray.getBegin().x;/* points right */
     if(test.x < getLeftPosition().x || test.x > getRightPosition().x || outOfBoundsRayX)
     {
         // out of bounds in the x-axis
@@ -209,7 +213,8 @@ bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) c
     // check bound in the y-axis
 
 
-    if(ray.getDirection() == 0 || ray.getDirection() == M_PI){
+    if(ray.getDirection() == 0 || ray.getDirection() == M_PI)
+    {
         cout << "ray delta y = 0" << endl;
         return test.y == ray.getBegin().y;
     }
@@ -219,10 +224,20 @@ bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) c
         /// ray pointing up, delta y is negative, so only check if test is below it
         cout << "ray pointing up, delta y negative" << endl;
         if (test.y > ray.getBegin().y) return false;
-    }else{
+    }
+    else
+    {
         cout << "ray pointing down, delta y positive" << endl;
         if (test.y < ray.getBegin().y) return false;
     }
     return (test.y < getTop().y && test.y > getBottom().y);
+}
+
+Hitresult TwoPointObject::getHitResult(sf::Vector2f hitPosition)
+{
+    Hitresult hitresult;
+    hitresult.hitPosition = hitPosition;
+    hitresult.hitType = HitType::block;
+    return hitresult;
 }
 

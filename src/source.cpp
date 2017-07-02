@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-//#include "CollisionHandler.h"
+#include "CollisionHandler.h"
 //#include "Lightray.h"
 #include <SFML/Config.hpp>
 #include <iostream>
@@ -49,12 +49,17 @@ int main()
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
     window.setPosition(sf::Vector2i(0, 0));
-    Lightray ray (sf::Vector2f (100, 400), 0, 10000);
-    TwoPointObject obj(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
-    TwoPointObject obj2(sf::Vector2f(20, 600), sf::Vector2f(300, 700), window);
-    TwoPointObject obj3(sf::Vector2f(20, 600), sf::Vector2f(30, 50), window);
-    TwoPointObject obj4(sf::Vector2f(300, 100), sf::Vector2f(30, 50), window);
-    //CollisionHandler col(window);
+    TwoPointObject* obj = new TwoPointObject(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
+    CollisionHandler col(window);
+    //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
+    int n_rays = 100;
+    std::vector<Lightray*> rays;
+    for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
+        //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
+    }
+    col.createRay(sf::Vector2f(400, 40), M_PI_2);
+
+    col.addPhysicsObject(obj);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
     //Wall* wall = col.createWall(sf::Vector2f(400, 600), sf::Vector2f(300, 100));
@@ -185,20 +190,16 @@ double i = 0;
 
         //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
+        for(int i = 0; i < rays.size(); i++){
+            rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
+        }
         //ray.setDirection(i);
-
-        window.draw(ray.getDrawable());
-        ray.setDirection(i);
-        window.draw(obj.getDrawable());
-        window.draw(obj2.getDrawable());
-        window.draw(obj3.getDrawable());
-        window.draw(obj4.getDrawable());
-        Hitresult hit;
-        obj.collide(ray, hit);
-        obj2.collide(ray, hit);
-        obj3.collide(ray, hit);
-        obj4.collide(ray, hit);
-        //col.draw();
+        //sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
+        //ray->setDirection(atan2(deltaPos.y, deltaPos.x));
+        //window.draw(ray.getDrawable());
+        obj->setFirst(sf::Vector2f(500 + 60*sin(i), 200 + 330*cos(i)));
+        //window.draw(obj->getDrawable());
+        col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();
         i+= 0.003;
@@ -208,3 +209,4 @@ double i = 0;
 
     return 0;
 }
+

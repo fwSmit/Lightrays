@@ -67,6 +67,12 @@ void Lightray::setColor(sf::Color color)
     currColor = color;
 }
 
+void Lightray::setEnd(sf::Vector2f _end)
+{
+    endOfRay = _end;
+    hasEnd = true;
+}
+
 sf::VertexArray Lightray::getDrawable() const
 {
     checkInitialized();
@@ -77,8 +83,6 @@ sf::VertexArray Lightray::getDrawable() const
     vertices[1].color = currColor;
     return vertices;
 }
-
-
 
 void Lightray::setDirection(double _direction)
 {
@@ -96,8 +100,16 @@ void Lightray::setPosition(sf::Vector2f _position)
 sf::Vector2f Lightray::getEnd() const
 {
     checkInitialized();
-    sf::Vector2f result;
-    result.x = getBegin().x + maxLenght * cos (r_direction);
-    result.y = getBegin().y + maxLenght * sin (r_direction);
-    return result;
+    if(hasEnd)
+    {
+        return endOfRay;
+    }
+    else
+    {
+        sf::Vector2f result;
+        result.x = getBegin().x + maxLenght * cos (r_direction);
+        result.y = getBegin().y + maxLenght * sin (r_direction);
+        return result;
+    }
 }
+

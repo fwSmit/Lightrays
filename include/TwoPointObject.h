@@ -46,16 +46,15 @@ public:
 
     void setColor (sf::Color color);
 
-
     virtual sf::VertexArray getDrawable() override;
 
-    virtual bool collide (const class Lightray& ray, class Hitresult& hitresult) override;
+    virtual bool collide (const class Lightray& ray, class Hitresult& hitresult, bool debugDraw = false) override;
 
-    virtual Hitresult getHitResult(sf::Vector2f hitPosition) { return Hitresult(); }
+    virtual Hitresult getHitResult(sf::Vector2f hitPosition);
 
-    bool checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult);
+    bool checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult, bool debugDraw);
 
-    void drawDebugCircle(sf::Vector2f position);
+    void drawDebugCircle(sf::Vector2f position, bool debugDraw);
 };
 
 #endif // TWOPOINTOBJECT_H

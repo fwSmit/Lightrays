@@ -14,10 +14,14 @@ float radianToDegree(float radians);
 class Lightray
 {
     sf::Vector2f position;
+
+    // this is only valid when hasEnd is true
+    sf::Vector2f endOfRay;
     double r_direction;
     int maxLenght;
     sf::Color currColor = sf::Color::Yellow;
     bool initialized;
+    bool hasEnd;
     void checkInitialized() const;
 public:
 
@@ -36,6 +40,10 @@ public:
     void setPosition (sf::Vector2f direction);
 
     void setColor (sf::Color color);
+
+    void setEnd (sf::Vector2f _end);
+
+    void resetEnd() { hasEnd = false; }
 
     sf::VertexArray getDrawable() const;
 
