@@ -55,7 +55,15 @@ public:
 
     virtual bool collide (const class Lightray& ray, class Hitresult& hitresult, bool debugDraw = false) override;
 
-    virtual Hitresult getHitResult(sf::Vector2f hitPosition);
+    /** \brief returns the hitresult caused by a hit at hitPosition and ray ray
+     *
+     * \param hitPosition: the position where a ray hit this object
+     * \param ray the ray that caused the collision
+     * \return the hitresult caused by a hit at hitPosition and ray ray
+     *
+     */
+
+    virtual Hitresult getHitResult(const sf::Vector2f& hitPosition, const Lightray& ray) const;
 
     bool checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult, bool debugDraw);
 

@@ -6,6 +6,9 @@
 #include "mathDefines.h"
 #include <limits>
 
+
+#include <iostream>
+
 std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj);
 
 using namespace std;
@@ -25,7 +28,7 @@ class Lightray
     int maxLenght;
     sf::Color currColor = sf::Color::Yellow;
     bool initialized;
-    bool hasEnd;
+    bool hasEnd = false;
     void checkInitialized() const;
 public:
 
@@ -35,6 +38,8 @@ public:
         return position;
     }
     sf::Vector2f getEnd() const;
+
+    bool doesHaveEnd() const { return hasEnd; }
 
     float getDirection() const { return r_direction; }
 
@@ -48,7 +53,7 @@ public:
 
     void setEnd (sf::Vector2f _end);
 
-    void resetEnd() { hasEnd = false; }
+    void resetEnd() { hasEnd = false; cout << "reset end" << endl; }
 
     sf::VertexArray getDrawable() const;
 

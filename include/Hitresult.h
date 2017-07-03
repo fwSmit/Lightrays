@@ -11,6 +11,7 @@ struct Hitresult
 {
     HitType hitType = no_hit;
     sf::Vector2f hitPosition;
+    float reflectDirection;
 };
 
 #endif // HITRESULT_H

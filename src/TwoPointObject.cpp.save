@@ -3,6 +3,7 @@
 #include "Lightray.h"
 #include "Hitresult.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -24,48 +25,36 @@ TwoPointObject::~TwoPointObject()
 
 sf::Vector2f TwoPointObject::getLeftPosition() const
 {
-    if (first.position.x < second.position.x)
-    {
+    if (first.position.x < second.position.x) {
         return first.position;
-    }
-    else
-    {
+    } else {
         return second.position;
     }
 }
 
 sf::Vector2f TwoPointObject::getRightPosition() const
 {
-    if (first.position.x < second.position.x)
-    {
+    if (first.position.x < second.position.x) {
         return second.position;
-    }
-    else
-    {
+    } else {
         return first.position;
     }
 }
 
 sf::Vector2f TwoPointObject::getTop() const
 {
-    if (first.position.y < second.position.y)
-    {
+    if (first.position.y < second.position.y) {
         return second.position;
-    }
-    else
-    {
+    } else {
         return first.position;
     }
 }
 
 sf::Vector2f TwoPointObject::getBottom() const
 {
-    if (first.position.y < second.position.y)
-    {
+    if (first.position.y < second.position.y) {
         return first.position;
-    }
-    else
-    {
+    } else {
         return second.position;
     }
 }
@@ -91,31 +80,26 @@ bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult, bool deb
 
     //cout << boolalpha << "is Ray vertical " << isRayVertical << endl << "is this vertical " << isThisVertical << endl;
     // paralel lines
-    if(isRayVertical && isThisVertical)
-    {
+    if(isRayVertical && isThisVertical) {
         // if they are on top of each other you cant really define an intersection point
         //cout << "both are vertical" << endl;
         return false;
     }
 
-    if(isRayVertical || isThisVertical)
-    {
+    if(isRayVertical || isThisVertical) {
         //cout << "one of them is vertical" << endl;
         float x_vertical; // x of the vertical line
         sf::Vector2f point_normal; // point of the non-vertical line
         float steepness; // steepness of the non-vertical line
 
-        if(isRayVertical)
-        {
+        if(isRayVertical) {
             // the Lightray is vertical
             x_vertical = ray.getBegin().x;
             point_normal = getFirstPosition();
 
             sf::Vector2f deltaPos = getRightPosition() - getLeftPosition();
             steepness = deltaPos.y/deltaPos.x;
-        }
-        else
-        {
+        } else {
             // the TwoPointObject is vertical
             x_vertical = getFirstPosition().x;
             point_normal = ray.getBegin();
@@ -169,15 +153,12 @@ bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult, bool deb
 
 bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& ray, Hitresult& hitResult, bool debugDraw)
 {
-    if(isInBounds(intersection, ray))
-    {
-        hitResult = getHitResult(intersection);
+    if(isInBounds(intersection, ray)) {
+        hitResult = getHitResult(intersection, ray);
         drawDebugCircle(intersection, debugDraw);
-        //cout << "intersection point = " << intersection << endl;
+        cout << "intersection point = " << intersection << endl;
         return true;
-    }
-    else
-    {
+    } else {
         //cout << "the hit is not in bounds" << endl;
         return false;
     }
@@ -185,8 +166,7 @@ bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& 
 
 void TwoPointObject::drawDebugCircle(sf::Vector2f position, bool debugDraw)
 {
-    if(debugDraw)
-    {
+    if(debugDraw) {
         sf::CircleShape debugCircle(5);
         debugCircle.setOrigin(debugCircle.getRadius(), debugCircle.getRadius());
         sf::Color color = sf::Color::Green;
@@ -201,28 +181,38 @@ bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) c
 {
     // first test if test is in bounds for this object
     // y-position doesn't have to be checked, because test should be on the line of this object
-    if(test.x < getLeftPosition().x || test.x > getRightPosition().x)
-    {
-        // out of bounds in the x-axis
-        //cout << "out of bounds in the x-axis for TwoPointObject" << endl;
-        return false;
+
+    bool isVertical = std::abs(getFirstPosition().x - getSecondPosition().x) < std::numeric_limits<float>::epsilon();
+    if(!isVertical) {
+        cout << "is not vertical" << endl;
+        if(test.x < getLeftPosition().x || test.x > getRightPosition().x) {
+            // out of bounds in the x-axis
+           // cout << "out of bounds in the x-axis for TwoPointObject" << endl;
+            return false;
+        }
+    }else{
+        cout << "is vertical" << endl;
+        if(test.y < getBottom().y || test.y > getTop().y) {
+            // out of bounds in the y-axis
+            //cout << "out of bounds in the y-axis for TwoPointObject" << endl;
+            return false;
+        }
     }
 
     // check bounds for the ray
-    if(!ray.isInBounds(test)){
-        //cout << "out of bounds for the ray" << endl;
+    if(!ray.isInBounds(test)) {
+        cout << "out of bounds for the ray" << endl;
         return false;
     }
 
-    //cout << "collision is in bounds" << endl;
+    cout << "collision is in bounds" << endl;
     return true;
     //return (test.y < getTop().y && test.y > getBottom().y);
 }
 
-Hitresult TwoPointObject::getHitResult(sf::Vector2f hitPosition)
+Hitresult TwoPointObject::getHitResult(const sf::Vector2f& hitPosition, const Lightray& ray) const
 {
     Hitresult hitresult;
-    //hitresult.hitPosition = hitPosition;
     hitresult.hitType = HitType::no_hit;
     return hitresult;
 }

@@ -1,13 +1,15 @@
 #ifndef MIRROR_H
 #define MIRROR_H
 
+#include "Lightray.h"
 #include <TwoPointObject.h>
 
 
 class Mirror : public TwoPointObject
 {
     public:
-        Mirror(sf::Vector2f firstPos, sf::Vector2f secondPos) : TwoPointObject(firstPos, secondPos) {};
+        Mirror(const sf::Vector2f& _first, const sf::Vector2f& _second, sf::RenderWindow& _window) : TwoPointObject(_first, _second, _window){};
+        virtual Hitresult getHitResult(const sf::Vector2f& hitPosition, const Lightray& ray) const override;
         virtual ~Mirror();
 
     protected:

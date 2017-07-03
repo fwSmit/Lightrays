@@ -1,3 +1,9 @@
+/** bug :
+    TwoPointObject* obj = new Wall(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
+    Lightray* ray = col.createRay(sf::Vector2f(400, 500), rotation);
+    dont collide
+*/
+
 #include <SFML/Graphics.hpp>
 #include "CollisionHandler.h"
 //#include "Lightray.h"
@@ -8,6 +14,7 @@
 #include <assert.h>
 #include "RayPath.h"
 #include "mathDefines.h"
+#include "Mirror.h"
 
 #define USE_SFML_WINDOW
 using namespace std;
@@ -48,7 +55,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
     window.setPosition(sf::Vector2i(0, 0));
     window.setVerticalSyncEnabled(true);
-    TwoPointObject* obj = new Wall(sf::Vector2f(300, 100), sf::Vector2f(504, 700), window);
+    TwoPointObject* obj = new Wall(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
     CollisionHandler col(window);
     //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
     int n_rays = 12;
@@ -191,7 +198,7 @@ double i = 0;
 
         //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
-        for(int i = 0; i < rays.size(); i++){
+        for(size_t i = 0; i < rays.size(); i++){
             rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
         }
         //ray.setDirection(i);

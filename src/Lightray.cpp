@@ -156,10 +156,12 @@ sf::Vector2f Lightray::getEnd() const
     checkInitialized();
     if(hasEnd)
     {
+        cout << "has end" << endl;
         return endOfRay;
     }
     else
     {
+        cout << "infinitely" << endl;
         sf::Vector2f result;
         result.x = getBegin().x + maxLenght * cos (r_direction);
         result.y = getBegin().y + maxLenght * sin (r_direction);
