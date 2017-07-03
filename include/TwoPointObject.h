@@ -12,11 +12,16 @@ class TwoPointObject : public PhysicsObject
     sf::Vertex first, second;
     sf::RenderWindow& window;
     bool isInBounds(const sf::Vector2f& test , const Lightray& ray) const;
+
 public:
+    sf::RenderWindow& getWindow() { return window; }
+
     inline virtual sf::Color getDefaultColor() { return sf::Color::Red; }
 
     TwoPointObject(sf::Vector2f _first, sf::Vector2f _second, sf::RenderWindow& debugWindow);
-    virtual ~TwoPointObject();
+
+    // so no instance of TwoPointObject can be made
+    virtual ~TwoPointObject() = 0;
 
     // returns the left vertex (lowest x-coordinate
     sf::Vector2f getLeftPosition()          const;

@@ -222,8 +222,7 @@ bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) c
 Hitresult TwoPointObject::getHitResult(sf::Vector2f hitPosition)
 {
     Hitresult hitresult;
-    hitresult.hitPosition = hitPosition;
-    hitresult.hitType = HitType::block;
+    hitresult.hitType = HitType::no_hit;
     return hitresult;
 }
 

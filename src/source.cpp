@@ -48,16 +48,16 @@ int main()
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
     window.setPosition(sf::Vector2i(0, 0));
     window.setVerticalSyncEnabled(true);
-    TwoPointObject* obj = new TwoPointObject(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
+    TwoPointObject* obj = new Wall(sf::Vector2f(300, 100), sf::Vector2f(504, 700), window);
     CollisionHandler col(window);
     //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
     int n_rays = 12;
     std::vector<Lightray*> rays;
     for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
-        rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
+        //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
     }
-    /*Lightray* ray = col.createRay(sf::Vector2f(400, 500), M_PI);
-    cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
+    Lightray* ray = col.createRay(sf::Vector2f(400, 500), M_PI);
+    /*cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
     cout << "difference " << fabs(ray->getDirection() - M_PI_2) << endl;
     cout << "is vertical " << ray->isVertical() << endl;*/
     col.addPhysicsObject(obj);
@@ -195,10 +195,10 @@ double i = 0;
             rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
         }
         //ray.setDirection(i);
-        //sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
-        //ray->setDirection(atan2(deltaPos.y, deltaPos.x));
+        sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
+        ray->setDirection(atan2(deltaPos.y, deltaPos.x));
         //window.draw(ray.getDrawable());
-        obj->setFirst(sf::Vector2f(500 + 60*sin(i), 200 + 330*cos(i)));
+        //obj->setFirst(sf::Vector2f(500 + 60*sin(i), 200 + 330*cos(i)));
         //window.draw(obj->getDrawable());
         col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;

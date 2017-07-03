@@ -34,8 +34,7 @@ void CollisionHandler::draw()
 {
     std::vector<RayPath> rayPaths = update();
 
-    for(size_t i = 0; i < rayPaths.size(); i++)
-    {
+    for(size_t i = 0; i < rayPaths.size(); i++) {
         window.draw(rayPaths[i].getDrawable());
     }
 
@@ -43,8 +42,7 @@ void CollisionHandler::draw()
         window.draw(physicsObjects[i]->getDrawable());
     }
 
-    for(size_t i = 0; i < rays.size(); i++)
-    {
+    for(size_t i = 0; i < rays.size(); i++) {
         //rays[i].calculateVertices(walls);
         rays[i]->resetEnd();
         //window.draw((*rays[i]).getDrawable());
@@ -66,8 +64,7 @@ void CollisionHandler::draw()
 std::vector<RayPath> CollisionHandler::update()
 {
     std::vector<RayPath> result(rays.size());
-    for(size_t i = 0; i < rays.size(); i++)
-    {
+    for(size_t i = 0; i < rays.size(); i++) {
         result[i] = update(*rays[i]);
     }
     return result;
@@ -80,17 +77,20 @@ RayPath CollisionHandler::update(Lightray& ray)
 
     Hitresult hitresult;
     bool isHit = false;
-    for(auto& i : physicsObjects)
-    {
+    for(auto& i : physicsObjects) {
         Hitresult hitTemp;
-        if((*i).collide(ray, hitTemp, debugDraw))
-        {
-            hitresult = hitTemp;
-            isHit = true;
+        if((*i).collide(ray, hitTemp, debugDraw)) {
+            switch (hitTemp.hitType) {
+            case HitType::block:
+                hitresult = hitTemp;
+                isHit = true;
+                break;
+            default:
+                break;
+            }
         }
     }
-    if(isHit)
-    {
+    if(isHit) {
         ray.setEnd(hitresult.hitPosition);
     }
     result.addRay(ray);
