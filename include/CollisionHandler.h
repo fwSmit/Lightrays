@@ -31,7 +31,7 @@ public:
     //bool getIntersectWall(const sf::Vector2f& begin, const sf::Vector2f& end, sf::Vector2f& result, Wall& hitResult, bool debugPrint = false);
     CollisionHandler(sf::RenderWindow& _window);
     virtual ~CollisionHandler();
-    Lightray* createRay(sf::Vector2f starting_position, double _direction);
+    Lightray* createRay(sf::Vector2f starting_position, float _direction);
     bool addPhysicsObject(PhysicsObject* obj);
     void draw();
 

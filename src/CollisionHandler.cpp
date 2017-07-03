@@ -14,7 +14,7 @@ CollisionHandler::~CollisionHandler()
     //dtor
 }
 
-Lightray* CollisionHandler::createRay(sf::Vector2f starting_position, double _direction)
+Lightray* CollisionHandler::createRay(sf::Vector2f starting_position, float _direction)
 {
     std::unique_ptr<Lightray> ray(new Lightray(starting_position, _direction, maxLenght));
     rays.push_back(std::move(ray));

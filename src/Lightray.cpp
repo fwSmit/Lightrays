@@ -5,6 +5,8 @@
 #include "CollisionHandler.h"
 #include "vectorOperations.h"
 
+using namespace std;
+
 float radianToDegree(float radians)
 {
     return radians/M_PI * 180;
@@ -40,7 +42,7 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj)
 /*!
 * @param  direction: (in degrees) the direction of the ray
 */
-Lightray::Lightray(const sf::Vector2f& _position, const double _direction, const int maxLenght) : position(_position), maxLenght(maxLenght)
+Lightray::Lightray(const sf::Vector2f& _position, const float _direction, const int maxLenght) : position(_position), maxLenght(maxLenght)
 {
     initialized = true;
     setDirection(_direction);
@@ -73,6 +75,57 @@ void Lightray::setEnd(sf::Vector2f _end)
     hasEnd = true;
 }
 
+bool Lightray::isInBounds(sf::Vector2f test) const
+{
+    // on the x-axis I distinguish 3 possibilities: Delta x = 0, delta x > 0 and delta x < 0
+    // ray extends infinitely in the direction it faces
+    //bool b_isVertical = isVertical();
+    //if(b_isVertical) cout << "ray is vertical" << endl;
+    // if the ray is vertical the intersection can't be out of bounds on the x-axis (provided test is on the line of the ray)
+    //if(!b_isVertical)
+    //{
+
+    //cout << "ray points left: " << boolalpha << pointsLeft << endl;
+    if(isPointingLeft())
+    {
+        if(test.x > getBegin().x)
+        {
+            return false;
+        }
+    }
+    else
+    {
+        // points right
+        if(test.x < getBegin().x)
+        {
+            return false;
+        }
+    }
+    //}
+
+    // when horizontal test can't be out of bounds on the y-axis
+    // same as for the x-axis
+    //if(!isHorizontal())
+    //{
+    //   cout << "out of bounds on the y-axis" << endl;
+    //   cout << "ray not horizontal" << endl;
+    if(isPointingUp())
+    {
+        cout << "ray pointing up, delta y negative" << endl;
+        if (test.y > getBegin().y) return false;
+    }
+    else
+    {
+        cout << "ray pointing down, delta y positive" << endl;
+        if (test.y < getBegin().y) return false;
+    }
+    //}
+
+    cout << "not out of bounds for the ray" << endl;
+    return true;
+}
+
+
 sf::VertexArray Lightray::getDrawable() const
 {
     checkInitialized();
@@ -84,10 +137,11 @@ sf::VertexArray Lightray::getDrawable() const
     return vertices;
 }
 
-void Lightray::setDirection(double _direction)
+void Lightray::setDirection(float _direction)
 {
     checkInitialized();
     r_direction = boundToTwoPi(_direction);
+    cout << "direction =" << r_direction << endl;
 }
 
 void Lightray::setPosition(sf::Vector2f _position)
@@ -112,4 +166,15 @@ sf::Vector2f Lightray::getEnd() const
         return result;
     }
 }
+bool Lightray::isPointingLeft() const
+{
+    return getDirection() > M_PI_2 && getDirection() < 2 * M_PI - M_PI_2;
+}
+
+bool Lightray::isPointingUp() const
+{
+    return getDirection() < 2 * M_PI && getDirection() > M_PI;
+}
+
+
 

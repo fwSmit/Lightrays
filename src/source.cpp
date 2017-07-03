@@ -57,7 +57,8 @@ int main()
     for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
         //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
     }
-    col.createRay(sf::Vector2f(400, 40), M_PI_2);
+    Lightray* ray = col.createRay(sf::Vector2f(400, 50), M_PI_2+0.0000001);
+    //cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
 
     col.addPhysicsObject(obj);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
@@ -203,7 +204,7 @@ double i = 0;
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();
         i+= 0.003;
-
+        //cin.get();
     }
 #endif
 

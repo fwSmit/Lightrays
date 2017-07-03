@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Wall.h"
-//#include <math.h>
+#include <math.h>
 
 std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj);
 
@@ -17,7 +17,10 @@ class Lightray
 
     // this is only valid when hasEnd is true
     sf::Vector2f endOfRay;
-    double r_direction;
+
+    // direction in radians.
+    /**0 is pointing to the right*/
+    float r_direction;
     int maxLenght;
     sf::Color currColor = sf::Color::Yellow;
     bool initialized;
@@ -32,10 +35,11 @@ public:
     }
     sf::Vector2f getEnd() const;
 
-    double getDirection() const { return r_direction; }
+    float getDirection() const { return r_direction; }
+
     // direction in radians.
     /**0 is pointing to the right*/
-    void setDirection (double direction);
+    void setDirection (float direction);
 
     void setPosition (sf::Vector2f direction);
 
@@ -47,10 +51,26 @@ public:
 
     sf::VertexArray getDrawable() const;
 
-    Lightray(const sf::Vector2f& position, const double _direction, const int maxLenght);
+    Lightray(const sf::Vector2f& position, const float _direction, const int maxLenght);
+
     virtual ~Lightray();
 
     Lightray(){ initialized = false; }
+
+    bool isInBounds(sf::Vector2f test) const;
+
+    // this doesn't work well because of floating point precision;
+    bool isVertical() const { return getDirection() == M_PI_2  || getDirection() == 2 * M_PI - M_PI_2; }
+
+    // this ignores that the ray can sometimes be vertical
+    // if the ray is vertical this returns true
+    bool isPointingLeft() const;
+
+    // this ignores that the ray can sometimes be horizontal
+    // if the ray is horizontal this returns false
+    bool isPointingUp() const;
+
+    //bool isHorizontal() const { return getDirection() == M_PI || getDirection() == 0; }
 
 protected:
 

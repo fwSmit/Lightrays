@@ -86,7 +86,7 @@ sf::VertexArray TwoPointObject::getDrawable()
 
 bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult, bool debugDraw)
 {
-    bool isRayVertical = std::abs(ray.getDirection()) == M_PI / 4;
+    bool isRayVertical = ray.isVertical();
     bool isThisVertical = getFirstPosition().x == getSecondPosition().x;
 
     cout << boolalpha << "is Ray vertical " << isRayVertical << endl << "is this vertical " << isThisVertical << endl;
@@ -131,6 +131,7 @@ bool TwoPointObject::collide(const Lightray& ray, Hitresult& hitresult, bool deb
 
     // neither of them is vertical
     float steepness_ray = std::tan(ray.getDirection());
+    cout << "steepness ray = " << steepness_ray << endl;
 
     sf::Vector2f deltaPos = getRightPosition() - getLeftPosition();
     float steepness_this = deltaPos.y/deltaPos.x;
@@ -172,6 +173,7 @@ bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& 
     {
         hitResult = getHitResult(intersection);
         drawDebugCircle(intersection, debugDraw);
+        cout << "intersection point = " << intersection << endl;
         return true;
     }
     else
@@ -197,40 +199,24 @@ void TwoPointObject::drawDebugCircle(sf::Vector2f position, bool debugDraw)
 
 bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) const
 {
-    bool pointsLeft = ray.getDirection() > M_PI_2 && ray.getDirection() < 2*M_PI - M_PI_2;
-    cout << "points left " << boolalpha << pointsLeft << endl;
-    bool outOfBoundsRayX = pointsLeft ? /* points left */test.x > ray.getBegin().x
-                           : test.x < ray.getBegin().x;/* points right */
-    if(test.x < getLeftPosition().x || test.x > getRightPosition().x || outOfBoundsRayX)
+    // first test if test is in bounds for this object
+    // y-position doesn't have to be checked, because test should be on the line of this object
+    if(test.x < getLeftPosition().x || test.x > getRightPosition().x)
     {
         // out of bounds in the x-axis
-        cout << "out of bounds in the x-axis" << endl;
+        cout << "out of bounds in the x-axis for TwoPointObject" << endl;
         return false;
     }
 
-    cout << "out of bounds in the y-axis" << endl;
-
-    // check bound in the y-axis
-
-
-    if(ray.getDirection() == 0 || ray.getDirection() == M_PI)
-    {
-        cout << "ray delta y = 0" << endl;
-        return test.y == ray.getBegin().y;
+    // check bounds for the ray
+    if(!ray.isInBounds(test)){
+        cout << "out of bounds for the ray" << endl;
+        return false;
     }
 
-    if(std::sin(ray.getDirection()) < 0)
-    {
-        /// ray pointing up, delta y is negative, so only check if test is below it
-        cout << "ray pointing up, delta y negative" << endl;
-        if (test.y > ray.getBegin().y) return false;
-    }
-    else
-    {
-        cout << "ray pointing down, delta y positive" << endl;
-        if (test.y < ray.getBegin().y) return false;
-    }
-    return (test.y < getTop().y && test.y > getBottom().y);
+    cout << "collision is in bounds" << endl;
+    return true;
+    //return (test.y < getTop().y && test.y > getBottom().y);
 }
 
 Hitresult TwoPointObject::getHitResult(sf::Vector2f hitPosition)
