@@ -73,4 +73,7 @@ float sq_lenght(const sf::Vector2f& in)
     return pow(in.x, 2) + pow(in.y, 2);
 }
 
+
+
+
 }

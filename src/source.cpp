@@ -55,19 +55,21 @@ int main()
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
     window.setPosition(sf::Vector2i(0, 0));
     window.setVerticalSyncEnabled(true);
-    TwoPointObject* obj = new Wall(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
+    TwoPointObject* obj = new Mirror(sf::Vector2f(400, 100), sf::Vector2f(300, 700), window);
+    TwoPointObject* obj2 = new Wall(sf::Vector2f(500, 100), sf::Vector2f(800, 10), window);
     CollisionHandler col(window);
     //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
-    int n_rays = 12;
+    int n_rays = 0;
     std::vector<Lightray*> rays;
     for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
         //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
     }
-    Lightray* ray = col.createRay(sf::Vector2f(400, 500), M_PI);
+    Lightray* ray = col.createRay(sf::Vector2f(200, 700), M_PI);
     /*cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
     cout << "difference " << fabs(ray->getDirection() - M_PI_2) << endl;
     cout << "is vertical " << ray->isVertical() << endl;*/
     col.addPhysicsObject(obj);
+    col.addPhysicsObject(obj2);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
     //Wall* wall = col.createWall(sf::Vector2f(400, 600), sf::Vector2f(300, 100));
@@ -201,11 +203,11 @@ double i = 0;
         for(size_t i = 0; i < rays.size(); i++){
             rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
         }
-        //ray.setDirection(i);
         sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
         ray->setDirection(atan2(deltaPos.y, deltaPos.x));
         //window.draw(ray.getDrawable());
         //obj->setFirst(sf::Vector2f(500 + 60*sin(i), 200 + 330*cos(i)));
+        //obj->setSecond(sf::Vector2f(30 + 59*sin(i), 800 + 12*cos(i)));
         //window.draw(obj->getDrawable());
         col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;

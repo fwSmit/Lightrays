@@ -75,7 +75,7 @@ std::vector<RayPath> CollisionHandler::update()
 
 RayPath CollisionHandler::update(Lightray& ray)
 {
-
+    int hitCount = 0;
     Hitresult hitresult;
     for(auto& i : physicsObjects) {
         Hitresult hitTemp;
@@ -83,16 +83,22 @@ RayPath CollisionHandler::update(Lightray& ray)
             switch (hitTemp.hitType) {
             case HitType::block:
                 hitresult = hitTemp;
+                ray.setEnd(hitTemp.hitPosition);
+                hitCount++;
                 break;
             case HitType::reflect:
                 hitresult = hitTemp;
+                ray.setEnd(hitTemp.hitPosition);
+                hitCount++;
                 break;
             default:
                 break;
             }
         }
     }
-
+    if(hitCount > 1){
+        cout << "hitcount " << hitCount << endl;
+    }
     RayPath result;
     switch (hitresult.hitType) {
     case HitType::block:

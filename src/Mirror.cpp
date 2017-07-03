@@ -1,6 +1,7 @@
 #include "Mirror.h"
 #include "vectorOperations.h"
-
+#include <iostream>
+#include "Lightray.h"
 
 
 Mirror::~Mirror()
@@ -13,9 +14,16 @@ Hitresult Mirror::getHitResult(const sf::Vector2f& hitPosition, const Lightray& 
     Hitresult hitresult;
     hitresult.hitPosition = hitPosition;
     hitresult.hitType = HitType::reflect;
-    sf::Vector2f this_deltaPos = getFirstPosition() - getSecondPosition();
-    float this_rotation = op::angle(this_deltaPos, sf::Vector2f(1,0)); //std::atan2(this_deltaPos.y, this_deltaPos.x);
-
-    hitresult.reflectDirection =  this_rotation;
+    // split up ray into components parallel and perpendicular to mirror
+    sf::Vector2f rayVector(ray.getBegin() - ray.getEnd());
+    sf::Vector2f mirrorVector(op::normalize(getRightPosition()-getLeftPosition()));
+    sf::Vector2f paralel = op::dot(mirrorVector, rayVector) * mirrorVector; // parallel to mirror
+    sf::Vector2f perpendicular = rayVector - paralel;// perpendicular to mirror
+    sf::Vector2f newRay = perpendicular - paralel;
+    std::cout << "paralel " << paralel << std::endl;
+    std::cout << "perpendicular " << perpendicular << std::endl;
+    float angle = std::atan2(newRay.y, newRay.x);
+    std::cout << "angle of reflection " << angle << std::endl;
+    hitresult.reflectDirection =  angle;
     return hitresult;
 }

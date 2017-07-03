@@ -14,7 +14,6 @@ namespace op
 sf::Vector2f rotate(const sf::Vector2f& in, const float x);
 
 
-
 /**
  * \return vector in the direction of a, but with length 1
  */
@@ -51,6 +50,7 @@ float length(const sf::Vector2u& in);
  * \return square lenght of vector in
  */
 float sq_lenght(const sf::Vector2f& in);
+
 
 }
 #endif // VECTOR_OPERATIONS
