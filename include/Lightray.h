@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Wall.h"
 #include "mathDefines.h"
+#include <limits>
 
 std::ostream& operator<<(std::ostream& os, const sf::Vector2f& obj);
 
@@ -61,10 +62,9 @@ public:
 
     // this doesn't work well because of floating point precision;
     bool isVertical() const {
-        float epsilon = 10e-6;
         float absDifference1 = fabs(getDirection() - M_PI_2);
         float absDifference2 = fabs(getDirection() -  (2 * M_PI - M_PI_2));
-        return absDifference1 < epsilon || absDifference2 < epsilon;
+        return absDifference1 < std::numeric_limits<float>::epsilon() || absDifference2 < std::numeric_limits<float>::epsilon();
     }
 
     // this ignores that the ray can sometimes be vertical

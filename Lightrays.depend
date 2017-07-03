@@ -425,10 +425,11 @@
 	"PhysicsObject.h"
 	"RayPath.h"
 
-1499086682 f:\fwsmi\github repositories\lightrays\include\lightray.h
+1499087998 f:\fwsmi\github repositories\lightrays\include\lightray.h
 	<SFML/Graphics.hpp>
 	"Wall.h"
 	"mathDefines.h"
+	<limits>
 
 1499086289 f:\fwsmi\github repositories\lightrays\include\mathdefines.h
 

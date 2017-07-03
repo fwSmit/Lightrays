@@ -56,3 +56,4 @@ SFML_lightrays.layout
 *.o
 *.cbp
 SFML_template.layout
+*.save

@@ -35,7 +35,6 @@ public:
 */
 int main()
 {
-
     //int currentRay = -1;
     //int currentWall = 0;
     //std::vector <Lightray* > rays;
