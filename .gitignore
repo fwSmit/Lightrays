@@ -54,3 +54,5 @@ SFML_lightrays.layout
 # the object files the compiler generates
 *.obj
 *.o
+*.cbp
+SFML_template.layout
