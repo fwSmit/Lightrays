@@ -60,12 +60,10 @@ public:
     bool isInBounds(sf::Vector2f test) const;
 
     // this doesn't work well because of floating point precision;
-    bool isVertical() const {
-        float epsilon = 10e-6;
+    bool isVertical() const { 
         float absDifference1 = fabs(getDirection() - M_PI_2);
         float absDifference2 = fabs(getDirection() -  (2 * M_PI - M_PI_2));
-        return absDifference1 < epsilon || absDifference2 < epsilon;
-    }
+        return abs }
 
     // this ignores that the ray can sometimes be vertical
     // if the ray is vertical this returns true
