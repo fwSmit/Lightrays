@@ -435,7 +435,7 @@
 1499085643 f:\fwsmi\github repositories\lightrays\include\raypath.h
 	"Lightray.h"
 
-1499085643 source:f:\fwsmi\github repositories\lightrays\src\lightray.cpp
+1499086989 source:f:\fwsmi\github repositories\lightrays\src\lightray.cpp
 	"Lightray.h"
 	<iostream>
 	<assert.h>
@@ -453,7 +453,7 @@
 	"RayPath.h"
 	<iostream>
 
-1499086544 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+1499086914 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
@@ -464,7 +464,7 @@
 	"RayPath.h"
 	"mathDefines.h"
 
-1499085643 source:f:\fwsmi\github repositories\lightrays\src\twopointobject.cpp
+1499087060 source:f:\fwsmi\github repositories\lightrays\src\twopointobject.cpp
 	"TwoPointObject.h"
 	<SFML/Graphics.hpp>
 	"Lightray.h"

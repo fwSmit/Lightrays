@@ -48,18 +48,19 @@ int main()
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
     window.setPosition(sf::Vector2i(0, 0));
+    window.setVerticalSyncEnabled(true);
     TwoPointObject* obj = new TwoPointObject(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
     CollisionHandler col(window);
     //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
-    int n_rays = 100;
+    int n_rays = 12;
     std::vector<Lightray*> rays;
     for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
-        //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
+        rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
     }
-    Lightray* ray = col.createRay(sf::Vector2f(400, 500), M_PI);
+    /*Lightray* ray = col.createRay(sf::Vector2f(400, 500), M_PI);
     cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
     cout << "difference " << fabs(ray->getDirection() - M_PI_2) << endl;
-    cout << "is vertical " << ray->isVertical() << endl;
+    cout << "is vertical " << ray->isVertical() << endl;*/
     col.addPhysicsObject(obj);
     /*rays.push_back(col.createRay(sf::Vector2f(0,0), sf::Vector2f(100,100)));
     rays.push_back(col.createRay(sf::Vector2f (100, 550), sf::Vector2f(3,4)));
@@ -203,7 +204,7 @@ double i = 0;
         col.draw();
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();
-        i+= 0.003;
+        i+= 0.03;
         //cin.get();
     }
 #endif

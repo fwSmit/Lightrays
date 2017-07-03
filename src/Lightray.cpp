@@ -111,17 +111,17 @@ bool Lightray::isInBounds(sf::Vector2f test) const
     //   cout << "ray not horizontal" << endl;
     if(isPointingUp())
     {
-        cout << "ray pointing up, delta y negative" << endl;
+        //cout << "ray pointing up, delta y negative" << endl;
         if (test.y > getBegin().y) return false;
     }
     else
     {
-        cout << "ray pointing down, delta y positive" << endl;
+        //cout << "ray pointing down, delta y positive" << endl;
         if (test.y < getBegin().y) return false;
     }
     //}
 
-    cout << "not out of bounds for the ray" << endl;
+    //cout << "not out of bounds for the ray" << endl;
     return true;
 }
 
@@ -141,7 +141,7 @@ void Lightray::setDirection(float _direction)
 {
     checkInitialized();
     r_direction = boundToTwoPi(_direction);
-    cout << "direction =" << r_direction << endl;
+    //cout << "direction =" << r_direction << endl;
 }
 
 void Lightray::setPosition(sf::Vector2f _position)
