@@ -156,7 +156,7 @@ bool TwoPointObject::checkHit(const sf::Vector2f& intersection, const Lightray& 
     if(isInBounds(intersection, ray)) {
         hitResult = getHitResult(intersection, ray);
         drawDebugCircle(intersection, debugDraw);
-        cout << "intersection point = " << intersection << endl;
+        //cout << "intersection point = " << intersection << endl;
         return true;
     } else {
         //cout << "the hit is not in bounds" << endl;
@@ -191,7 +191,7 @@ bool TwoPointObject::isInBounds(const sf::Vector2f& test, const Lightray& ray) c
             return false;
         }
     }else{
-        cout << "is vertical" << endl;
+        //cout << "is vertical" << endl;
         if(test.y < getBottom().y || test.y > getTop().y) {
             // out of bounds in the y-axis
             //cout << "out of bounds in the y-axis for TwoPointObject" << endl;

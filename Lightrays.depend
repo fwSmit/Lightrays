@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1499085644 source:f:\fwsmi\github repositories\lightrays\src\vectoroperations.cpp
+1499240317 source:f:\fwsmi\github repositories\lightrays\src\vectoroperations.cpp
 	"vectorOperations.h"
 
-1499085643 f:\fwsmi\github repositories\lightrays\include\vectoroperations.h
+1499240317 f:\fwsmi\github repositories\lightrays\include\vectoroperations.h
 	"SFML/System/Vector2.hpp"
 	<cmath>
 
@@ -411,7 +411,7 @@
 1499089733 f:\fwsmi\github repositories\lightrays\include\hitresult.h
 	<SFML/System/Vector2.hpp>
 
-1499092524 source:f:\fwsmi\github repositories\lightrays\src\collisionhandler.cpp
+1499240317 source:f:\fwsmi\github repositories\lightrays\src\collisionhandler.cpp
 	"CollisionHandler.h"
 	<assert.h>
 	"vectorOperations.h"
@@ -426,7 +426,7 @@
 	"PhysicsObject.h"
 	"RayPath.h"
 
-1499092445 f:\fwsmi\github repositories\lightrays\include\lightray.h
+1499240649 f:\fwsmi\github repositories\lightrays\include\lightray.h
 	<SFML/Graphics.hpp>
 	"Wall.h"
 	"mathDefines.h"
@@ -438,7 +438,7 @@
 1499092125 f:\fwsmi\github repositories\lightrays\include\raypath.h
 	"Lightray.h"
 
-1499092164 source:f:\fwsmi\github repositories\lightrays\src\lightray.cpp
+1499240677 source:f:\fwsmi\github repositories\lightrays\src\lightray.cpp
 	"Lightray.h"
 	<iostream>
 	<assert.h>
@@ -456,7 +456,7 @@
 	"RayPath.h"
 	<iostream>
 
-1499100461 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+1499240317 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
@@ -468,7 +468,7 @@
 	"mathDefines.h"
 	"Mirror.h"
 
-1499099353 source:f:\fwsmi\github repositories\lightrays\src\twopointobject.cpp
+1499240592 source:f:\fwsmi\github repositories\lightrays\src\twopointobject.cpp
 	"TwoPointObject.h"
 	<SFML/Graphics.hpp>
 	"Lightray.h"
@@ -476,12 +476,13 @@
 	<iostream>
 	<limits>
 
-1499100413 source:f:\fwsmi\github repositories\lightrays\src\mirror.cpp
+1499240592 source:f:\fwsmi\github repositories\lightrays\src\mirror.cpp
 	"Mirror.h"
 	"vectorOperations.h"
-	"mathDefines.h"
+	<iostream>
+	"Lightray.h"
 
-1499090198 f:\fwsmi\github repositories\lightrays\include\mirror.h
+1499240317 f:\fwsmi\github repositories\lightrays\include\mirror.h
 	"Lightray.h"
 	<TwoPointObject.h>
 

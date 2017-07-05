@@ -14,17 +14,12 @@ float radianToDegree(float radians)
 
 float boundToTwoPi(float degrees)
 {
-    if(degrees > 0)
-    {
-        while (degrees >= 2*M_PI)
-        {
+    if(degrees > 0) {
+        while (degrees >= 2*M_PI) {
             degrees -= 2*M_PI;
         }
-    }
-    else
-    {
-        while (degrees < 0)
-        {
+    } else {
+        while (degrees < 0) {
             degrees += 2*M_PI;
         }
     }
@@ -50,8 +45,7 @@ Lightray::Lightray(const sf::Vector2f& _position, const float _direction, const 
 
 void Lightray::checkInitialized() const
 {
-    if(!initialized)
-    {
+    if(!initialized) {
         std::logic_error ex("Object of class Lightray was not initialized");
         throw ex;
     }
@@ -86,18 +80,33 @@ bool Lightray::isInBounds(sf::Vector2f test) const
     //{
 
     //cout << "ray points left: " << boolalpha << pointsLeft << endl;
-    if(isPointingLeft())
-    {
-        if(test.x > getBegin().x)
-        {
-            return false;
+    if(doesHaveEnd()) {
+        bool isVertical = std::abs(getBegin().x - getEnd().x) < std::numeric_limits<float>::epsilon();
+        if(!isVertical) {
+            //cout << "is not vertical" << endl;
+            if(test.x < min(getBegin().x, getEnd().x) || test.x > max(getBegin().x, getEnd().x)) {
+                // out of bounds in the x-axis
+                //cout << "out of bounds in the x-axis for TwoPointObject" << endl;
+                return false;
+            }
+        } else {
+            //cout << "is vertical" << endl;
+            if(test.y < min(getBegin().y, getEnd().y) || test.y > max(getBegin().y, getEnd().y)) {
+                // out of bounds in the y-axis
+                //cout << "out of bounds in the y-axis for TwoPointObject" << endl;
+                return false;
+            }
         }
     }
-    else
-    {
+
+    // the ray is infinitely long
+    if(isPointingLeft()) {
+        if(test.x > getBegin().x) {
+            return false;
+        }
+    } else {
         // points right
-        if(test.x < getBegin().x)
-        {
+        if(test.x < getBegin().x) {
             return false;
         }
     }
@@ -109,13 +118,10 @@ bool Lightray::isInBounds(sf::Vector2f test) const
     //{
     //   cout << "out of bounds on the y-axis" << endl;
     //   cout << "ray not horizontal" << endl;
-    if(isPointingUp())
-    {
+    if(isPointingUp()) {
         //cout << "ray pointing up, delta y negative" << endl;
         if (test.y > getBegin().y) return false;
-    }
-    else
-    {
+    } else {
         //cout << "ray pointing down, delta y positive" << endl;
         if (test.y < getBegin().y) return false;
     }
@@ -154,14 +160,11 @@ void Lightray::setPosition(sf::Vector2f _position)
 sf::Vector2f Lightray::getEnd() const
 {
     checkInitialized();
-    if(hasEnd)
-    {
-        cout << "has end" << endl;
+    if(hasEnd) {
+        //cout << "has end" << endl;
         return endOfRay;
-    }
-    else
-    {
-        cout << "infinitely" << endl;
+    } else {
+        //cout << "infinitely" << endl;
         sf::Vector2f result;
         result.x = getBegin().x + maxLenght * cos (r_direction);
         result.y = getBegin().y + maxLenght * sin (r_direction);

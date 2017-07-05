@@ -53,7 +53,7 @@ public:
 
     void setEnd (sf::Vector2f _end);
 
-    void resetEnd() { hasEnd = false; cout << "reset end" << endl; }
+    void resetEnd() { hasEnd = false; /*cout << "reset end" << endl;*/ }
 
     sf::VertexArray getDrawable() const;
 
