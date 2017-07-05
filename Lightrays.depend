@@ -456,7 +456,7 @@
 	"RayPath.h"
 	<iostream>
 
-1499092648 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+1499100461 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
@@ -468,16 +468,18 @@
 	"mathDefines.h"
 	"Mirror.h"
 
-1499092665 source:f:\fwsmi\github repositories\lightrays\src\twopointobject.cpp
+1499099353 source:f:\fwsmi\github repositories\lightrays\src\twopointobject.cpp
 	"TwoPointObject.h"
 	<SFML/Graphics.hpp>
 	"Lightray.h"
 	"Hitresult.h"
 	<iostream>
+	<limits>
 
-1499091285 source:f:\fwsmi\github repositories\lightrays\src\mirror.cpp
+1499100413 source:f:\fwsmi\github repositories\lightrays\src\mirror.cpp
 	"Mirror.h"
 	"vectorOperations.h"
+	"mathDefines.h"
 
 1499090198 f:\fwsmi\github repositories\lightrays\include\mirror.h
 	"Lightray.h"

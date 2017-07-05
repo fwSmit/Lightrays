@@ -57,3 +57,5 @@ SFML_lightrays.layout
 *.cbp
 SFML_template.layout
 *.save
+Lightrays.layout
+*.depend
