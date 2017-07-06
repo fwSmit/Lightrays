@@ -14,11 +14,14 @@ using namespace std;
 class CollisionHandler
 {
     const float maxLenght;
+
+    // the maximum number of times a reflection gets counted before being just blocked
+    const static int maxRecursion = 100;
     vector<std::unique_ptr<Lightray>> rays;
     sf::RenderWindow& window;
     vector<std::unique_ptr<PhysicsObject>> physicsObjects;
     std::vector<RayPath> update();
-    RayPath update(Lightray& ray);
+    RayPath update(Lightray& ray, const PhysicsObject* ignore = nullptr, const int recursionCount = 0);
     bool debugDraw = false;
 
     /** \brief makes sure the line between vertices a and b don't intersect any walls

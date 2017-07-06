@@ -23,6 +23,14 @@ void RayPath::addRay(const Lightray& ray)
     vertices.append(lastRay.getBegin());
 }
 
+void RayPath::addRayPath(const RayPath rayPath)
+{
+    for(size_t i = 0; i < rayPath.getVertices().getVertexCount(); i++){
+        vertices.append(rayPath.getVertices()[i]);
+    }
+    lastRay = rayPath.getLastRay();
+}
+
 
 sf::VertexArray RayPath::getDrawable() const
 {

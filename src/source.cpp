@@ -56,7 +56,7 @@ int main()
     window.setPosition(sf::Vector2i(0, 0));
     window.setVerticalSyncEnabled(true);
     TwoPointObject* obj = new Mirror(sf::Vector2f(400, 100), sf::Vector2f(300, 700), window);
-    TwoPointObject* obj2 = new Wall(sf::Vector2f(500, 100), sf::Vector2f(800, 10), window);
+    TwoPointObject* obj2 = new Mirror(sf::Vector2f(500, 100), sf::Vector2f(800, 10), window);
     CollisionHandler col(window);
     //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
     int n_rays = 0;
@@ -64,7 +64,7 @@ int main()
     for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
         //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
     }
-    Lightray* ray = col.createRay(sf::Vector2f(200, 700), M_PI);
+    Lightray* ray = col.createRay(sf::Vector2f(500, 700), M_PI);
     /*cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
     cout << "difference " << fabs(ray->getDirection() - M_PI_2) << endl;
     cout << "is vertical " << ray->isVertical() << endl;*/

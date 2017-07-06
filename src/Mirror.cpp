@@ -14,6 +14,7 @@ Hitresult Mirror::getHitResult(const sf::Vector2f& hitPosition, const Lightray& 
     Hitresult hitresult;
     hitresult.hitPosition = hitPosition;
     hitresult.hitType = HitType::reflect;
+    hitresult.causer = this;
     // split up ray into components parallel and perpendicular to mirror
     sf::Vector2f rayVector(ray.getBegin() - ray.getEnd());
     sf::Vector2f mirrorVector(op::normalize(getRightPosition()-getLeftPosition()));

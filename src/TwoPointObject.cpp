@@ -9,12 +9,12 @@ using namespace std;
 
 #define M_PI		3.14159265358979323846
 
-TwoPointObject::TwoPointObject(sf::Vector2f _first, sf::Vector2f _second,  sf::RenderWindow& debugWindow) : window(debugWindow)
+TwoPointObject::TwoPointObject(sf::Vector2f _first, sf::Vector2f _second,  sf::RenderWindow& debugWindow, sf::Color color) : window(debugWindow)
 {
     first.position = _first;
-    first.color = getDefaultColor();
+    first.color = color;
     second.position = _second;
-    second.color = getDefaultColor();
+    second.color = color;
 
 }
 

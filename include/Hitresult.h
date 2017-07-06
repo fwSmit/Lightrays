@@ -12,6 +12,7 @@ struct Hitresult
     HitType hitType = no_hit;
     sf::Vector2f hitPosition;
     float reflectDirection;
+    const class PhysicsObject* causer = nullptr;
 };
 
 #endif // HITRESULT_H

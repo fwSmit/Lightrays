@@ -18,7 +18,7 @@ public:
 
     inline virtual sf::Color getDefaultColor() { return sf::Color::Red; }
 
-    TwoPointObject(sf::Vector2f _first, sf::Vector2f _second, sf::RenderWindow& debugWindow);
+    TwoPointObject(sf::Vector2f _first, sf::Vector2f _second, sf::RenderWindow& debugWindow, sf::Color color = sf::Color::Red);
 
     // so no instance of TwoPointObject can be made
     virtual ~TwoPointObject() = 0;

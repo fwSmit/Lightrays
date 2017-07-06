@@ -34,15 +34,18 @@ void CollisionHandler::draw()
 {
     std::vector<RayPath> rayPaths = update();
 
-    for(size_t i = 0; i < rayPaths.size(); i++) {
+    for(size_t i = 0; i < rayPaths.size(); i++)
+    {
         window.draw(rayPaths[i].getDrawable());
     }
 
-    for(size_t i = 0; i < physicsObjects.size(); i++) {
+    for(size_t i = 0; i < physicsObjects.size(); i++)
+    {
         window.draw(physicsObjects[i]->getDrawable());
     }
 
-    for(size_t i = 0; i < rays.size(); i++) {
+    for(size_t i = 0; i < rays.size(); i++)
+    {
         //rays[i].calculateVertices(walls);
         rays[i]->resetEnd();
         //cout << rays[i]->doesHaveEnd() << endl;
@@ -66,50 +69,60 @@ void CollisionHandler::draw()
 std::vector<RayPath> CollisionHandler::update()
 {
     std::vector<RayPath> result(rays.size());
-    for(size_t i = 0; i < rays.size(); i++) {
+    for(size_t i = 0; i < rays.size(); i++)
+    {
         result[i] = update(*rays[i]);
     }
     return result;
 }
 
 
-RayPath CollisionHandler::update(Lightray& ray)
+RayPath CollisionHandler::update(Lightray& ray, const PhysicsObject* ignore, const int recusionCount)
 {
-    int hitCount = 0;
     Hitresult hitresult;
-    for(auto& i : physicsObjects) {
+    for(auto& i : physicsObjects)
+    {
         Hitresult hitTemp;
-        if((*i).collide(ray, hitTemp, debugDraw)) {
-            switch (hitTemp.hitType) {
-            case HitType::block:
-                hitresult = hitTemp;
-                ray.setEnd(hitTemp.hitPosition);
-                hitCount++;
-                break;
-            case HitType::reflect:
-                hitresult = hitTemp;
-                ray.setEnd(hitTemp.hitPosition);
-                hitCount++;
-                break;
-            default:
-                break;
+        if(i.get() != ignore){
+            // the current object isn't ignored
+            if((*i).collide(ray, hitTemp, debugDraw))
+            {
+                switch (hitTemp.hitType)
+                {
+                case HitType::block:
+                    hitresult = hitTemp;
+                    ray.setEnd(hitTemp.hitPosition);
+                    break;
+                case HitType::reflect:
+                    hitresult = hitTemp;
+                    ray.setEnd(hitTemp.hitPosition);
+                    break;
+                default:
+                    break;
+                }
             }
         }
     }
-    if(hitCount > 1){
-        cout << "hitcount " << hitCount << endl;
-    }
     RayPath result;
-    switch (hitresult.hitType) {
+    switch (hitresult.hitType)
+    {
     case HitType::block:
         ray.setEnd(hitresult.hitPosition);
         result.addRay(ray);
         break;
     case HitType::reflect:
+    {
         ray.setEnd(hitresult.hitPosition);
         result.addRay(ray);
-        result.addRay(Lightray(hitresult.hitPosition, hitresult.reflectDirection, maxLenght));
-        break;
+
+        // the ray only gets reflected a limited number of times (namely maxRecursion number of times)
+        if(recusionCount < maxRecursion){
+        Lightray reflection(hitresult.hitPosition, hitresult.reflectDirection, maxLenght);
+        assert (hitresult.causer != nullptr);
+        result.addRayPath(update(reflection, hitresult.causer, recusionCount+1));
+    }
+    }
+    break;
     default:
         result.addRay(ray);
         break;
