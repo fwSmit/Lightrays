@@ -1,3 +1,9 @@
+/** bug :
+    TwoPointObject* obj = new Wall(sf::Vector2f(300, 100), sf::Vector2f(300, 700), window);
+    Lightray* ray = col.createRay(sf::Vector2f(400, 500), rotation);
+    dont collide
+*/
+
 #include <SFML/Graphics.hpp>
 #include "CollisionHandler.h"
 //#include "Lightray.h"
@@ -53,13 +59,12 @@ int main()
     TwoPointObject* obj2 = new Mirror(sf::Vector2f(500, 100), sf::Vector2f(800, 10), window);
     CollisionHandler col(window);
     //Lightray* ray = col.createRay(sf::Vector2f(200 ,500), 0.3);
-    int n_rays = 1;
+    int n_rays = 0;
     std::vector<Lightray*> rays;
     for(double i = 0; i < 2 * M_PI; i+= (2 * M_PI)/n_rays){
-        rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
+        //rays.push_back(col.createRay(sf::Vector2f(300, 40), i));
     }
-    //Lightray* ray = col.createRay(sf::Vector2f(500, 700), M_PI);
-    //Lightray* ray2 = col.createRay(sf::Vector2f(500, 700), M_PI);
+    Lightray* ray = col.createRay(sf::Vector2f(500, 700), M_PI);
     /*cout << "ray direction is set well " << boolalpha << (ray->getDirection() == M_PI_2) << endl;
     cout << "difference " << fabs(ray->getDirection() - M_PI_2) << endl;
     cout << "is vertical " << ray->isVertical() << endl;*/
@@ -198,8 +203,8 @@ double i = 0;
         for(size_t i = 0; i < rays.size(); i++){
             rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
         }
-        //sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
-        //ray->setDirection(atan2(deltaPos.y, deltaPos.x));
+        sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
+        ray->setDirection(atan2(deltaPos.y, deltaPos.x));
         //window.draw(ray.getDrawable());
         //obj->setFirst(sf::Vector2f(500 + 60*sin(i), 200 + 330*cos(i)));
         //obj->setSecond(sf::Vector2f(30 + 59*sin(i), 800 + 12*cos(i)));
