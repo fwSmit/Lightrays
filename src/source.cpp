@@ -200,9 +200,9 @@ double i = 0;
 
         //ray2->setDirection(sf::Vector2f(sf::Mouse::getPosition(window)));
         window.clear();
-        for(size_t i = 0; i < rays.size(); i++){
-            rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
-        }
+        //for(size_t i = 0; i < rays.size(); i++){
+        //    rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
+       //}
         sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
         ray->setDirection(atan2(deltaPos.y, deltaPos.x));
         //window.draw(ray.getDrawable());
