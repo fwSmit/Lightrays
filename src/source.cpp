@@ -53,7 +53,7 @@ int main()
     settings.majorVersion = 4;
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
-    window.setPosition(sf::Vector2i(0, 0));
+    window.setPosition(sf::Vector2i(100, 0));
     window.setVerticalSyncEnabled(true);
     TwoPointObject* obj = new Mirror(sf::Vector2f(400, 100), sf::Vector2f(300, 700), window);
     TwoPointObject* obj2 = new Mirror(sf::Vector2f(500, 100), sf::Vector2f(800, 10), window);
