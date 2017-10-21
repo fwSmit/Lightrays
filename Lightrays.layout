@@ -2,69 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="include\Wall.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="361" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\TwoPointObject.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2147" topLine="32" />
-		</Cursor>
-	</File>
-	<File name="src\Mirror.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="337" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\CollisionHandler.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2669" topLine="68" />
-		</Cursor>
-	</File>
-	<File name="src\PhysicsObject.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="243" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\RayPath.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="411" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\Lightray.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3525" topLine="54" />
-		</Cursor>
-	</File>
-	<File name="include\Mirror.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="133" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="src\TwoPointObject.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="5604" topLine="148" />
 		</Cursor>
 	</File>
-	<File name="src\Wall.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\PhysicsObject.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="97" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\Material.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\Lightray.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="159" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\source.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1467" topLine="30" />
+			<Cursor1 position="92" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="include\RayPath.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -72,14 +17,49 @@
 			<Cursor1 position="285" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include\Material.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\TwoPointObject.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="236" topLine="0" />
+			<Cursor1 position="2147" topLine="32" />
 		</Cursor>
 	</File>
-	<File name="include\PhysicsObject.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\source.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="269" topLine="0" />
+			<Cursor1 position="1467" topLine="37" />
+		</Cursor>
+	</File>
+	<File name="include\Wall.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="361" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\CollisionHandler.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2669" topLine="68" />
+		</Cursor>
+	</File>
+	<File name="src\Lightray.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3525" topLine="54" />
+		</Cursor>
+	</File>
+	<File name="src\CircleMaterial.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="246" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Mirror.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="337" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Material.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\PhysicsObject.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="276" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\vectorOperations.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,9 +67,34 @@
 			<Cursor1 position="893" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src\RayPath.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="411" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Lightray.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="159" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Mirror.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="133" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="include\Hitresult.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="238" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Material.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="236" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Wall.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="97" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

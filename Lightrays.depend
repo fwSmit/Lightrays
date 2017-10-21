@@ -406,7 +406,8 @@
 	<string>
 	<vector>
 
-1499439821 f:\fwsmi\github repositories\lightrays\include\physicsobject.h
+1508448039 f:\fwsmi\github repositories\lightrays\include\physicsobject.h
+	<SFML/Graphics/VertexArray.hpp>
 
 1499414124 f:\fwsmi\github repositories\lightrays\include\hitresult.h
 	<SFML/System/Vector2.hpp>
@@ -445,18 +446,17 @@
 	"CollisionHandler.h"
 	"vectorOperations.h"
 
-1499085643 source:f:\fwsmi\github repositories\lightrays\src\physicsobject.cpp
+1508448039 source:f:\fwsmi\github repositories\lightrays\src\physicsobject.cpp
 	"Hitresult.h"
 	"Lightray.h"
 	"PhysicsObject.h"
-	<SFML/Graphics/VertexArray.hpp>
 
 1499414124 source:f:\fwsmi\github repositories\lightrays\src\raypath.cpp
 	"Lightray.h"
 	"RayPath.h"
 	<iostream>
 
-1499439669 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+1508447919 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
@@ -485,4 +485,16 @@
 1499414124 f:\fwsmi\github repositories\lightrays\include\mirror.h
 	"Lightray.h"
 	<TwoPointObject.h>
+
+1499441615 source:f:\fwsmi\github repositories\lightrays\src\circlematerial.cpp
+	"CircleMaterial.h"
+
+1499441527 f:\fwsmi\github repositories\lightrays\include\circlematerial.h
+	<Material.h>
+
+1499441527 f:\fwsmi\github repositories\lightrays\include\material.h
+	<PhysicsObject.h>
+
+1499441279 source:f:\fwsmi\github repositories\lightrays\src\material.cpp
+	"Material.h"
 
