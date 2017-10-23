@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-CollisionHandler::CollisionHandler(sf::RenderWindow& _window) :  maxLenght (op::length(_window.getSize())), window(_window)
+CollisionHandler::CollisionHandler(sf::RenderWindow& _window) : window(_window), maxLenght (op::length(_window.getSize()))
 {
     //ctor
 }
