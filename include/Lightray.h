@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Wall.h"
 #include "mathDefines.h"
+#include <math.h>
 #include <limits>
 
 

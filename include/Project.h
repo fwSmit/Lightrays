@@ -16,6 +16,7 @@ class Project
     protected:
 
     private:
+		sf::RenderWindow& window;
 
 };
 

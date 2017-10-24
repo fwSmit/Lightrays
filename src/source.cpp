@@ -15,7 +15,8 @@
 #include "RayPath.h"
 #include "mathDefines.h"
 #include "Mirror.h"
-#include "../Project.h"
+#include "Project_lightrays.h"
+//#include "Project.h"
 
 #define USE_SFML_WINDOW
 using namespace std;
@@ -145,7 +146,7 @@ double i = 0;
         //for(size_t i = 0; i < rays.size(); i++){
         //    rays[i]->setPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
        //}
-       lightrays.loop();
+       //lightrays.loop();
 
         //cout << sf::Mouse::getPosition(window).x << "   " << sf::Mouse::getPosition(window).y << endl;
         window.display();
