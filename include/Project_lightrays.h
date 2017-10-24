@@ -13,7 +13,6 @@ class Project_lightrays : Project
     protected:
 
     private:
-        sf::RenderWindow& window;
         class TwoPointObject* obj;
         class TwoPointObject* obj2;
         int a;

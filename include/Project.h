@@ -14,9 +14,9 @@ class Project
         void loop();
 
     protected:
+		sf::RenderWindow& window;
 
     private:
-		sf::RenderWindow& window;
 
 };
 

@@ -1,4 +1,6 @@
 #include "Project_lightrays.h"
+#include "CollisionHandler.h"
+#include "Mirror.h"
 
 Project_lightrays::Project_lightrays(sf::RenderWindow& _window) : Project(_window), col(window)
 {
@@ -21,7 +23,7 @@ Project_lightrays::~Project_lightrays()
     //dtor
 }
 
-Project_lightrays::loop()
+void Project_lightrays::loop()
 {
     sf::Vector2f deltaPos = sf::Vector2f (sf::Mouse::getPosition(window)) - ray->getBegin();
     ray->setDirection(atan2(deltaPos.y, deltaPos.x));
@@ -31,3 +33,4 @@ Project_lightrays::loop()
     ////window.draw(obj->getDrawable());
     col.draw();
 }
+

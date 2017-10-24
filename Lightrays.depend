@@ -412,13 +412,13 @@
 1499414124 f:\fwsmi\github repositories\lightrays\include\hitresult.h
 	<SFML/System/Vector2.hpp>
 
-1508607093 source:f:\fwsmi\github repositories\lightrays\src\collisionhandler.cpp
+1508872382 source:f:\fwsmi\github repositories\lightrays\src\collisionhandler.cpp
 	"CollisionHandler.h"
 	<assert.h>
 	"vectorOperations.h"
 	<iostream>
 
-1508607037 f:\fwsmi\github repositories\lightrays\include\collisionhandler.h
+1508872376 f:\fwsmi\github repositories\lightrays\include\collisionhandler.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<memory>
@@ -427,10 +427,11 @@
 	"PhysicsObject.h"
 	"RayPath.h"
 
-1499240649 f:\fwsmi\github repositories\lightrays\include\lightray.h
+1508872832 f:\fwsmi\github repositories\lightrays\include\lightray.h
 	<SFML/Graphics.hpp>
 	"Wall.h"
 	"mathDefines.h"
+	<math.h>
 	<limits>
 	<iostream>
 
@@ -456,11 +457,22 @@
 	"RayPath.h"
 	<iostream>
 
-<<<<<<< HEAD
-1508607138 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
-=======
-1508447919 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
->>>>>>> parent of 201e4df... backup
+1499414124 D
+
+1508878932 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+	<SFML/Graphics.hpp>
+	"CollisionHandler.h"
+	<SFML/Config.hpp>
+	<iostream>
+	"vectorOperations.h"
+	<SFML/Window/ContextSettings.hpp>
+	<assert.h>
+	"RayPath.h"
+	"mathDefines.h"
+	"Mirror.h"
+	"Project_lightrays.h"
+
+1508447919 ent of 201e4df... backup
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
@@ -515,4 +527,25 @@
 1508607068 f:\fwsmi\github repositories\lightrays\project.h
 	<SFML/Graphics.hpp>
 	<CollisionHandler.h>
+
+1508872832 source:f:\fwsmi\github repositories\lightrays\src\project.cpp
+	"Project.h"
+	"CollisionHandler.h"
+	<SFML/Window/ContextSettings.hpp>
+	<assert.h>
+	"RayPath.h"
+	"mathDefines.h"
+	"Mirror.h"
+
+1508878190 f:\fwsmi\github repositories\lightrays\include\project.h
+	<SFML/Graphics.hpp>
+	<CollisionHandler.h>
+
+1508878309 source:f:\fwsmi\github repositories\lightrays\src\project_lightrays.cpp
+	"Project_lightrays.h"
+	"CollisionHandler.h"
+	"Mirror.h"
+
+1508878152 f:\fwsmi\github repositories\lightrays\include\project_lightrays.h
+	"Project.h"
 
