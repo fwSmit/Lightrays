@@ -45,3 +45,17 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# codeblocks project and workspace files
+SFML_lightrays.cbp
+SFML_lightrays.depend
+SFML_lightrays.layout
+
+# the object files the compiler generates
+*.obj
+*.o
+*.cbp
+SFML_template.layout
+*.save
+Lightrays.layout
+*.depend
