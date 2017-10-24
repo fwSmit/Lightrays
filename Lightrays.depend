@@ -456,7 +456,11 @@
 	"RayPath.h"
 	<iostream>
 
+<<<<<<< HEAD
 1508607138 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+=======
+1508447919 source:f:\fwsmi\github repositories\lightrays\src\source.cpp
+>>>>>>> parent of 201e4df... backup
 	<SFML/Graphics.hpp>
 	"CollisionHandler.h"
 	<SFML/Config.hpp>
