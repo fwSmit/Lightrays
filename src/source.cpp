@@ -54,7 +54,7 @@ int main()
     settings.majorVersion = 4;
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
-    window.setPosition(sf::Vector2i(100, 0));
+    window.setPosition(sf::Vector2i(0, 0));
     window.setVerticalSyncEnabled(true);
 
     Project_lightrays lightrays(window);
