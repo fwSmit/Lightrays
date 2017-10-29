@@ -8,9 +8,11 @@ project (lightrays)
 file(GLOB lightRay_SRC
     "src/*.cpp"
 	"include/*.h"
+	"${CMAKE_SOURCE_DIR}/src/dependencies/src/*"
 )
 set (CMAKE_CXX_STANDARD 11)
 
+include_directories(${CMAKE_SOURCE_DIR}/dependencies/include)
 include_directories(${CMAKE_SOURCE_DIR}/projects/lightrays/include)
 
 add_library(lightrays_lib SHARED ${lightRay_SRC})

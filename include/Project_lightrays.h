@@ -2,6 +2,9 @@
 #define PROJECT_LIGHTRAYS_H
 
 #include "Project.h"
+#include "CollisionHandler.h"
+
+class CollisionHandler;
 
 class Project_lightrays : Project
 {

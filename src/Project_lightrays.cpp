@@ -1,5 +1,4 @@
 #include "Project_lightrays.h"
-#include "CollisionHandler.h"
 #include "Mirror.h"
 
 Project_lightrays::Project_lightrays(sf::RenderWindow& _window) : Project(_window), col(window)
