@@ -12,12 +12,16 @@ file(GLOB lightRay_SRC
 )
 set (CMAKE_CXX_STANDARD 11)
 
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/include)
-include_directories(${CMAKE_SOURCE_DIR}/projects/lightrays/include)
+#when used as library
+#include_directories(${CMAKE_SOURCE_DIR}/dependencies/include)
+#include_directories(${CMAKE_SOURCE_DIR}/projects/lightrays/include)
 
-add_library(lightrays_lib SHARED ${lightRay_SRC})
+#when used as standalone executable
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-#add_executable(lightrays ${lightRay_SRC})
+#add_library(lightrays_lib SHARED ${lightRay_SRC})
+
+add_executable(lightrays_lib ${lightRay_SRC})
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
@@ -28,5 +32,3 @@ if(SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIR})
   target_link_libraries(lightrays_lib ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()
-
-
