@@ -5,6 +5,7 @@
 */
 
 #include "SFML/Graphics.hpp"
+#include "TGUI/TGUI.hpp"
 #include "Project_lightrays.h"
 
 int main()
@@ -14,10 +15,11 @@ int main()
     settings.majorVersion = 4;
     settings.minorVersion = 5;
     sf::RenderWindow window(sf::VideoMode(900, 800), "SFML works!", sf::Style::Default, settings);
+	tgui::Gui gui{window};
     window.setPosition(sf::Vector2i(0, 0));
     window.setVerticalSyncEnabled(true);
 
-    Project_lightrays lightrays(window);
+    Project_lightrays lightrays(window, gui);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -36,8 +38,12 @@ int main()
                 default:
                 break;
             }
+			// has to be in this order
+			gui.handleEvent(event);
+			lightrays.handleEvent(event);
 		}
 		window.clear();
+		gui.draw();
 		lightrays.loop();
 		window.display();
 	}
