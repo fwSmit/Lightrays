@@ -2,7 +2,6 @@
 #define PROJECT_H
 
 #include <SFML/Graphics.hpp>
-#include <CollisionHandler.h>
 
 class CollisionHandler;
 
