@@ -20,6 +20,8 @@ class Project_lightrays : Project
 			isPlacingMirror = true;
 		}
 		void handleEvent(sf::Event event);
+		void stop();
+		void start();
     protected:
 
     private:

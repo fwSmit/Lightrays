@@ -64,5 +64,14 @@ void Project_lightrays::handleEvent(sf::Event event){
 			}
 		}
 	}
+}
 
+void Project_lightrays::start(){
+	const tgui::Widget::Ptr button = gui.get("mirrorAdd");
+	button->show();
+}
+
+void Project_lightrays::stop(){
+	const tgui::Widget::Ptr button = gui.get("mirrorAdd");
+	button->hide();
 }
