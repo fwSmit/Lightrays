@@ -1,16 +1,16 @@
 #include "CircleMaterial.h"
 
-CircleMaterial::CircleMaterial()
-{
-    //ctor
-}
+// CircleMaterial::CircleMaterial()
+// {
+    // //ctor
+// }
 
-CircleMaterial::~CircleMaterial()
-{
-    //dtor
-}
+// CircleMaterial::~CircleMaterial()
+// {
+    // //dtor
+// }
 
-bool CircleMaterial::collide(const class Lightray& ray, class Hitresult& hitresult, bool debugDraw)
-{
+// bool CircleMaterial::collide(const class Lightray& ray, class Hitresult& hitresult, bool debugDraw)
+// {
 
-}
+// }

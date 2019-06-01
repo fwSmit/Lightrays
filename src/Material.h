@@ -1,7 +1,7 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include <PhysicsObject.h>
+#include "PhysicsObject.h"
 
 
 class Material : public PhysicsObject

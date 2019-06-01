@@ -1,13 +1,13 @@
 #include "Project_lightrays.h"
 
-Project_lightrays::Project_lightrays(sf::RenderWindow& _window, tgui::Gui& _gui) : Project(_window), col(window), gui(_gui)
+Project_lightrays::Project_lightrays(sf::RenderWindow& _window, tgui::Gui& _gui) : Project(_window), col(window), gui(_gui), blackTheme("/home/friso/tgui-git/src/TGUI/themes/Black.txt")
 {
-	tgui::Theme::Ptr theme = tgui::Theme::create("/home/friso/tgui-git/src/TGUI/widgets/Black.txt");
-	tgui::Button::Ptr button = theme->load("button");
-	button->setText("add mirror");
-	button->setSize(sf::Vector2f(100, 100));
-	button->connect("pressed", &Project_lightrays::mirrorAdd, this);
-	button->setPosition(100, 300);
+	tgui::Theme::setDefault(&blackTheme);
+	button = tgui::Button::create();
+	// button->setText("add mirror");
+	// button->setSize(sf::Vector2f(100, 100));
+	// button->connect("pressed", &Project_lightrays::mirrorAdd, this);
+	// button->setPosition(100, 300);
 	gui.add(button, "mirrorAdd");
 
 	obj = new Mirror(sf::Vector2f(400, 100), sf::Vector2f(300, 700), window);
@@ -67,11 +67,10 @@ void Project_lightrays::handleEvent(sf::Event event){
 }
 
 void Project_lightrays::start(){
-	const tgui::Widget::Ptr button = gui.get("mirrorAdd");
-	button->show();
+	// button->show();
 }
 
 void Project_lightrays::stop(){
 	const tgui::Widget::Ptr button = gui.get("mirrorAdd");
-	button->hide();
+	// button->hide();
 }

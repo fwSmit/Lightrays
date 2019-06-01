@@ -2,7 +2,7 @@
 #define WALL_H
 
 #include "Lightray.h"
-#include<TwoPointObject.h>
+#include "TwoPointObject.h"
 
 class Wall : public TwoPointObject
 {

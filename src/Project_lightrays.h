@@ -36,6 +36,8 @@ class Project_lightrays : Project
         CollisionHandler col;
         class Lightray* ray;
 		tgui::Gui& gui;
+		tgui::Theme blackTheme;
+		tgui::Widget::Ptr button;
 };
 
 #endif // PROJECT_LIGHTRAYS_H
